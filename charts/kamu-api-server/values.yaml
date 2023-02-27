@@ -1,10 +1,10 @@
 replicaCount: 1
 
 image:
-  repository: kamudata/kamu-web-ui
+  repository: kamudata/kamu-base
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest-with-data"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -24,7 +24,8 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
