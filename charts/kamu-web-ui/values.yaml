@@ -1,4 +1,27 @@
+###############################################################################
+# Application
+###############################################################################
+
+app:
+  config:
+    # URL of the API server that will be used by the frontend application
+    # IMPORTANT: Must be a externally resolvable, as application runs in a browser
+    # Example: https://api.kamu.dev/graphql
+    apiServerGqlUrl: ""
+
+###############################################################################
+# Pod
+###############################################################################
+
 replicaCount: 1
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 image:
   repository: kamudata/kamu-web-ui
@@ -32,9 +55,23 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+###############################################################################
+# Service
+###############################################################################
+
 service:
   type: ClusterIP
   port: 80
+
+###############################################################################
+# Ingress
+###############################################################################
 
 ingress:
   enabled: false
@@ -52,13 +89,9 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+###############################################################################
+# Autoscaling
+###############################################################################
 
 autoscaling:
   enabled: false
@@ -67,8 +100,3 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}

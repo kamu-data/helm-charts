@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "kamu-web-ui.fullname" . }}-{{ include "kamu-web-ui.sha" .Values.app.config }}
+  labels:
+    {{- include "kamu-web-ui.labels" . | nindent 4 }}
+data:
+  runtime-config.json: |-
+{{- .Values.app.config | toJson | nindent 4 }}

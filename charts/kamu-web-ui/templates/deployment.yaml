@@ -37,6 +37,10 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          volumeMounts:
+            - name: configs
+              subPath: runtime-config.json
+              mountPath: /usr/share/nginx/html/assets/runtime-config.json
           livenessProbe:
             httpGet:
               path: /
@@ -47,6 +51,10 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: configs
+          configMap:
+            name: {{ include "kamu-web-ui.fullname" . }}-{{ include "kamu-web-ui.sha" .Values.app.config }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

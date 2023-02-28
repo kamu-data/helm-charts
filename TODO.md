@@ -1,0 +1,5 @@
+- setup repository (ghpages?)
+- setup CI (linting,  testing, release)
+- values.yaml schemas
+- chart.lock
+- reuse macros across charts

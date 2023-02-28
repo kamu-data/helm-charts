@@ -1,4 +1,22 @@
+###############################################################################
+# Application
+###############################################################################
+
+app: {}
+
+###############################################################################
+# Pod
+###############################################################################
+
 replicaCount: 1
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 image:
   repository: kamudata/kamu-base
@@ -24,8 +42,7 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext:
-  {}
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -33,9 +50,23 @@ securityContext:
   # runAsNonRoot: true
   # runAsUser: 1000
 
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+###############################################################################
+# Service
+###############################################################################
+
 service:
   type: ClusterIP
   port: 80
+
+###############################################################################
+# Ingress
+###############################################################################
 
 ingress:
   enabled: false
@@ -53,13 +84,9 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+###############################################################################
+# Autoscaling
+###############################################################################
 
 autoscaling:
   enabled: false
@@ -67,9 +94,3 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
