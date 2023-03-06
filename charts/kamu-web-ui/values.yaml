@@ -67,7 +67,16 @@ affinity: {}
 
 service:
   type: ClusterIP
-  port: 80
+  ports:
+    - port: 80
+      name: http
+      targetPort: http
+      protocol: TCP
+    - port: 443
+      name: https
+      targetPort: http
+      protocol: TCP
+  annotations: {}
 
 ###############################################################################
 # Ingress

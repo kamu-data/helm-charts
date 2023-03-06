@@ -33,12 +33,10 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:
-            - kamu
-          args: ["system", "api-server", "--address", "0.0.0.0", "--http-port", "80"]
+          args: ["/opt/kamu/kamu-api-server", "--local-repo", "/opt/kamu/workspace/.kamu", "run", "--address", "0.0.0.0", "--http-port", "80"]
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 80
               protocol: TCP
           livenessProbe:
             httpGet:

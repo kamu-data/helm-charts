@@ -19,7 +19,7 @@ resources: {}
   #   memory: 128Mi
 
 image:
-  repository: kamudata/kamu-base
+  repository: kamudata/api-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest-with-data"
@@ -62,7 +62,16 @@ affinity: {}
 
 service:
   type: ClusterIP
-  port: 80
+  ports:
+    - port: 80
+      name: http
+      targetPort: http
+      protocol: TCP
+    - port: 443
+      name: https
+      targetPort: http
+      protocol: TCP
+  annotations: {}
 
 ###############################################################################
 # Ingress
