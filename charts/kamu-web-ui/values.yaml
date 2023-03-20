@@ -24,7 +24,7 @@ resources: {}
   #   memory: 128Mi
 
 image:
-  repository: kamudata/kamu-web-ui
+  repository: ghcr.io/kamu-data/kamu-web-ui
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
