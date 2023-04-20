@@ -13,10 +13,12 @@ spec:
       {{- include "kamu-api-server.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- if eq .Values.image.pullPolicy "Always" }}
+        # Roll the pods on every deployment to refresh the image
+        rollme: {{ randAlphaNum 5 | quote }}
+        {{- end }}
+        {{- toYaml .Values.podAnnotations | nindent 8 }}
       labels:
         {{- include "kamu-api-server.selectorLabels" . | nindent 8 }}
     spec:
