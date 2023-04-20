@@ -13,12 +13,12 @@ spec:
       {{- include "kamu-web-ui.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with merge
+          .Values.podAnnotations
+          (ternary (dict "roll-pods" (randAlphaNum 5)) dict (eq .Values.image.pullPolicy "Always"))  }}
       annotations:
-        {{- if eq .Values.image.pullPolicy "Always" }}
-        # Roll the pods on every deployment to refresh the image
-        rollme: {{ randAlphaNum 5 | quote }}
-        {{- end }}
-        {{- toYaml .Values.podAnnotations | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "kamu-web-ui.selectorLabels" . | nindent 8 }}
     spec:
