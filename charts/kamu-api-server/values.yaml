@@ -7,6 +7,9 @@ app:
     # URL of the storage bucket for datasets (S3 or Minio)
     # Example: https://api.kamu.dev/graphql
     datasetRepositoryUrl: ""
+    authGithubClientId: ""
+    authGithubClientSecret: ""
+    jwtSecret: ""
 
 ###############################################################################
 # Pod

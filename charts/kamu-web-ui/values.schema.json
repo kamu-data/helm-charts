@@ -14,12 +14,29 @@
                 "config": {
                     "type": "object",
                     "required": [
-                        "apiServerGqlUrl"
+                        "apiServerGqlUrl",
+                        "githubClientId",
+                        "featureFlags"
                     ],
                     "properties": {
                         "apiServerGqlUrl": {
                             "type": "string",
                             "minLength": 1
+                        },
+                        "githubClientId": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "featureFlags": {
+                            "type": "object",
+                            "required": [
+                                "enableLogout"
+                            ],
+                            "properties": {
+                                "enableLogout": {
+                                    "type": "boolean"
+                                }
+                            }
                         }
                     }
                 }
