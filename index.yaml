@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  kamu-api-server:
+  - apiVersion: v2
+    appVersion: 0.8.1
+    created: "2023-10-16T20:15:45.929912457Z"
+    description: Kamu backend application
+    digest: c81424064e568d3329d3c440552d240150fd10ccf9e31129807e5a3776ad7fba
+    name: kamu-api-server
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/kamu-api-server-0.8.1/kamu-api-server-0.8.1.tgz
+    version: 0.8.1
+  kamu-web-ui:
+  - apiVersion: v2
+    appVersion: 0.12.1
+    created: "2023-10-16T20:15:46.114966779Z"
+    description: Kamu frontend application
+    digest: bf308cd9fec31e9a9cfc16308d05130c1e3aa0b82240c3d81e69b8f623f552b5
+    name: kamu-web-ui
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/kamu-web-ui-0.12.1/kamu-web-ui-0.12.1.tgz
+    version: 0.12.1
+generated: "2023-10-16T20:15:46.114971979Z"
