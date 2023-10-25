@@ -1,0 +1,17 @@
+fullnameOverride: minio
+
+service:
+  nodePorts:
+    api: 30100
+    console: 30101
+
+persistence:
+  enabled: true
+
+provisioning:
+  enabled: true
+  buckets:
+    - name: kamu
+
+auth:
+  rootPassword: secret123
