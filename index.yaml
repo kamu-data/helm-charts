@@ -42,4 +42,15 @@ entries:
     urls:
     - https://github.com/kamu-data/helm-charts/releases/download/kamu-web-ui-0.12.1/kamu-web-ui-0.12.1.tgz
     version: 0.12.1
-generated: "2023-10-18T18:41:44.253049615Z"
+  minio-devel:
+  - apiVersion: v2
+    appVersion: RELEASE.2023-10-25T06-33-25Z
+    created: "2023-10-25T20:09:25.670730385Z"
+    description: Local development minio installation
+    digest: fb8bcfe7741bf87effce39d78ab82d9fbeb1c49c2fbe6a3e5efd2c963762e757
+    name: minio-devel
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/minio-devel-0.1.0/minio-devel-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-10-25T20:09:25.670747986Z"
