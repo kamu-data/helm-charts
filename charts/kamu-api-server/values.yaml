@@ -78,6 +78,10 @@ service:
       name: https
       targetPort: http
       protocol: TCP
+    - port: 50050
+      name: flightsql
+      targetPort: flightsql
+      protocol: TCP
   annotations: {}
 
 ###############################################################################
