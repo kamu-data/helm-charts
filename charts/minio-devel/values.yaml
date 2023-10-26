@@ -1,0 +1,83 @@
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: "quay.io/minio/minio"
+  tag: "latest"
+  digest: ""
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+service:
+  # type: ClusterIP
+  type: NodePort
+  ports:
+    api: 9000
+    console: 9090
+
+  nodePorts:
+    api: ""
+    console: ""
+
+ingress:
+  enabled: false
+  className: ""
+  # className: nginx
+
+  api: {}
+    # host: minio.lan
+
+  console: {}
+    # host: console.minio.lan
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+persistence:
+  enabled: false
+  storageClass: ""
+  size: 1Gi
+  accessModes:
+    - ReadWriteOnce
+
+auth:
+  rootUser: admin
+  rootPassword: ""
+  existingSecret: false
+
+provisioning:
+  enabled: false
+
+  resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+  buckets: []
+
+livenessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
+
+readinessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 15
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
+
+securityContext:
+  enabled: true
+  runAsUser: 100001
+  runAsNonRoot: true

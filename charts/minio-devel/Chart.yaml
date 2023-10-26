@@ -1,0 +1,6 @@
+apiVersion: v2
+name: minio-devel
+description: Local development minio installation
+type: application
+version: 0.1.1
+appVersion: "RELEASE.2023-10-25T06-33-25Z"
