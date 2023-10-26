@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   kamu-api-server:
   - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-10-26T23:24:15.805417067Z"
+    description: Kamu backend application
+    digest: b97e55fa4d0bf9e001a6a0c6f267d5192b3f9c34f7655b2c1a35d71b758310ff
+    name: kamu-api-server
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/kamu-api-server-0.9.0/kamu-api-server-0.9.0.tgz
+    version: 0.9.0
+  - apiVersion: v2
     appVersion: 0.8.3
     created: "2023-10-18T18:41:44.030940458Z"
     description: Kamu backend application
@@ -63,4 +73,4 @@ entries:
     urls:
     - https://github.com/kamu-data/helm-charts/releases/download/minio-devel-0.1.0/minio-devel-0.1.0.tgz
     version: 0.1.0
-generated: "2023-10-26T16:19:45.477371769Z"
+generated: "2023-10-26T23:24:15.805432768Z"
