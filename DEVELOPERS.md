@@ -43,11 +43,15 @@ Pages website. GitHub's embedded workflow automatically generates the website
 every time the release workflow pushes new changes to the `gh-pages` branch.
 The `README.md` file is the source for the landing page.
 
-The index file references chart packages that are published as GitHub releases.
-ArtifactHub [to publish][3] scans the index file periodically to publish
-all charts' metadata and living documentation to users.
+The [index file][4] references chart packages that are published as GitHub releases.
+[ArtifactHub][3] scans the index file periodically to publish all charts'
+metadata and living documentation to users.
+
+The `gh-pages` branch also contains a special `artifacthub-repo.yml` file that
+instructs ArtifactHub to ignore some non-production charts such as `minio-devel`.
 
 
 [1]: https://github.com/kamu-data/helm-charts/blob/master/.github/workflows/release.yml
 [2]: https://helm.sh/docs/howto/chart_releaser_action/
 [3]: https://artifacthub.io/packages/search?repo=kamu&sort=relevance&page=1
+[4]: https://kamu-data.github.io/helm-charts/index.yaml
