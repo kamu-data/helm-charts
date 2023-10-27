@@ -27,6 +27,21 @@ For that reason contributors must stick to the following rules:
 * **TODO**: Linting tests must pass before a change can be merged.
 
 
+## Versioning charts
+
+`Chart.yaml` files contain two versions:
+- `version` - version of the chart itself
+- `appVersion` - version of the application being deployed (an image tag)
+
+When making updates we try to keep chart `version` in sync with `appVersion`. This
+what MAJOR and MINOR application update will result in MAJOR and MINOR updates of
+the chart.
+
+In situations where we need to release an updated chart without updating the
+application's `appVersion` - it's OK to increment the PATCH part of the chart's
+`version` separately.
+
+
 ## Releasing charts
 
 Charts are released automatically after every merge to master by a
