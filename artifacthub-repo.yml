@@ -3,3 +3,5 @@ repositoryID: 846fbaea-b40d-48d9-b1af-c3ac8aed2476
 owners:
   - name: smikhtoniuk
     email: smikhtoniuk@kamu.dev
+ignore:
+  - name: minio-devel
