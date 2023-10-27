@@ -5,8 +5,6 @@
 
 Official [Helm](https://helm.sh) charts for deploying [Kamu](https://kamu.dev) components in [Kubernetes](https://kubernetes.io).
 
-This repository is modeled after https://github.com/prometheus-community/helm-charts.
-
 
 ## Usage
 [Helm](https://helm.sh) must be installed to use the charts. Please refer to Helm's [documentation](https://helm.sh/docs) to get started.
