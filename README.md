@@ -28,7 +28,7 @@ To uninstall the chart:
 
 
 ## Contributing
-The source code of all Kamu Helm charts can be found on Github: https://github.com/kamu-data/helm-charts/
+The source code of all Kamu Helm charts can be found on Github: [https://github.com/kamu-data/helm-charts/](https://github.com/kamu-data/helm-charts/)
 
 We'd love to have you contribute! Please refer to our [developer documentation](https://github.com/kamu-data/helm-charts/blob/master/DEVELOPERS.md) for details.
 
