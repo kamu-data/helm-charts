@@ -2,7 +2,7 @@ apiVersion: v2
 name: kamu-web-ui
 description: Web frontend component of the Kamu Compute Node
 type: application
-version: 0.13.0
+version: 0.13.1
 appVersion: "0.13.0"
 home: https://kamu.dev
 sources:
