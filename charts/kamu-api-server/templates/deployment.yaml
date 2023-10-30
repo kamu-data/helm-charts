@@ -37,18 +37,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - "/opt/kamu/kamu-api-server"
-            - {{ printf "--repo-url=%s" .Values.app.config.datasetRepositoryUrl | quote }}
+            - "--config=/opt/kamu/config.yaml"
+            - {{ printf "--repo-url=%s" .Values.app.datasetRepositoryUrl | quote }}
             - "run"
             - "--address=0.0.0.0"
             - "--http-port=80"
             - "--flightsql-port=50050"
           env:
             - name: KAMU_AUTH_GITHUB_CLIENT_ID
-              value: {{ .Values.app.config.authGithubClientId | quote }}
+              value: {{ .Values.app.authGithubClientId | quote }}
             - name: KAMU_AUTH_GITHUB_CLIENT_SECRET
-              value: {{ .Values.app.config.authGithubClientSecret | quote }}
+              value: {{ .Values.app.authGithubClientSecret | quote }}
             - name: KAMU_JWT_SECRET
-              value: {{ .Values.app.config.jwtSecret | quote }}
+              value: {{ .Values.app.jwtSecret | quote }}
+          volumeMounts:
+            - name: configs
+              subPath: config.yaml
+              mountPath: /opt/kamu/config.yaml
           ports:
             - name: http
               containerPort: 80
@@ -66,6 +71,10 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: configs
+          configMap:
+            name: {{ include "kamu-api-server.fullname" . }}-{{ template "kamu-api-server.config.sha" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

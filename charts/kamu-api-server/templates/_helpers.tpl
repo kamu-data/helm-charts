@@ -60,3 +60,19 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Renders the content of the configmap
+*/}}
+{{- define "kamu-api-server.config.yaml" -}}
+{{- $root := . -}}
+config.yaml: | {{ .Values.app.config | toYaml | nindent 2 }}
+{{- end -}}
+
+{{/*
+Computes a short hash of the configmap content to re-create it and trigger the re-deploy upon any change
+*/}}
+{{- define "kamu-api-server.config.sha" -}}
+{{ include "kamu-api-server.config.yaml" . | toJson | sha256sum | trunc 10 }}
+{{- end -}}

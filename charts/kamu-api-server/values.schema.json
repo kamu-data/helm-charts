@@ -5,32 +5,30 @@
     "app": {
       "type": "object",
       "required": [
-        "config"
+        "config",
+        "datasetRepositoryUrl",
+        "authGithubClientId",
+        "authGithubClientSecret",
+        "jwtSecret"
       ],
       "properties": {
         "config": {
           "type": "object",
-          "required": [
-            "datasetRepositoryUrl",
-            "authGithubClientId",
-            "authGithubClientSecret",
-            "jwtSecret"
-          ],
-          "properties": {
-            "datasetRepositoryUrl": {
-              "type": "string",
-              "format": "uri"
-            },
-            "authGithubClientId": {
-              "type": "string"
-            },
-            "authGithubClientSecret": {
-              "type": "string"
-            },
-            "jwtSecret": {
-              "type": "string"
-            }
-          }
+          "required": [],
+          "properties": {}
+        },
+        "datasetRepositoryUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "authGithubClientId": {
+          "type": "string"
+        },
+        "authGithubClientSecret": {
+          "type": "string"
+        },
+        "jwtSecret": {
+          "type": "string"
         }
       }
     }

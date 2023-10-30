@@ -3,13 +3,16 @@
 ###############################################################################
 
 app:
-  config:
-    # URL of the storage bucket for datasets (S3 or Minio)
-    # Example: https://api.kamu.dev/graphql
-    datasetRepositoryUrl: ""
-    authGithubClientId: ""
-    authGithubClientSecret: ""
-    jwtSecret: ""
+  # TODO: generate schema for config from DTOs
+  config: {}
+  # TODO: Move into config file
+  # URL of the storage bucket for datasets (S3 or Minio)
+  # Example: https://api.kamu.dev/graphql
+  datasetRepositoryUrl: ""
+  # TODO: Move into secrets
+  authGithubClientId: ""
+  authGithubClientSecret: ""
+  jwtSecret: ""
 
 ###############################################################################
 # Pod
