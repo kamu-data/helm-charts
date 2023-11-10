@@ -162,6 +162,16 @@ entries:
   minio-devel:
   - apiVersion: v2
     appVersion: RELEASE.2023-10-25T06-33-25Z
+    created: "2023-11-10T18:30:30.006609592Z"
+    description: Local development minio installation
+    digest: ea1f90cf88df648c5a55a4672f75513bd2ce9f6c21fad2981f8c863142972d75
+    name: minio-devel
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/minio-devel-0.1.2/minio-devel-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: RELEASE.2023-10-25T06-33-25Z
     created: "2023-10-26T16:19:45.477357968Z"
     description: Local development minio installation
     digest: 8d19433f7ad8001800ac20b8cc8fd1d0fc0a82003b328a7ff7d372b37bf459b4
@@ -180,4 +190,4 @@ entries:
     urls:
     - https://github.com/kamu-data/helm-charts/releases/download/minio-devel-0.1.0/minio-devel-0.1.0.tgz
     version: 0.1.0
-generated: "2023-10-30T17:33:46.801330007Z"
+generated: "2023-11-10T18:30:30.006636152Z"
