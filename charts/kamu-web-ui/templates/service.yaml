@@ -10,9 +10,22 @@ metadata:
   {{- end }}
 spec:
   type: {{ .Values.service.type }}
-  {{- with .Values.service.ports }}
+  {{- with .Values.service }}
   ports:
-    {{- toYaml . | nindent 4 }}
+    - name: http
+      port: {{ .ports.http }}
+      targetPort: http
+      protocol: TCP
+      {{- if (and (eq .type "NodePort") .nodePorts.http) }}
+      nodePort: {{ .nodePorts.http }}
+      {{- end }}
+    - name: https
+      port: {{ .ports.https }}
+      targetPort: http
+      protocol: TCP
+      {{- if (and (eq .type "NodePort") .nodePorts.https) }}
+      nodePort: {{ .nodePorts.https }}
+      {{- end }}
   {{- end }}
   selector:
     {{- include "kamu-web-ui.selectorLabels" . | nindent 4 }}

@@ -71,14 +71,12 @@ affinity: {}
 service:
   type: ClusterIP
   ports:
-    - port: 80
-      name: http
-      targetPort: http
-      protocol: TCP
-    - port: 443
-      name: https
-      targetPort: http
-      protocol: TCP
+    http: 80
+    https: 443
+  nodePorts:
+    http: ""
+    https: ""
+
   annotations: {}
 
 ###############################################################################

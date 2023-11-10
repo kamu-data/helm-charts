@@ -80,19 +80,17 @@ affinity: {}
 
 service:
   type: ClusterIP
+
   ports:
-    - port: 80
-      name: http
-      targetPort: http
-      protocol: TCP
-    - port: 443
-      name: https
-      targetPort: http
-      protocol: TCP
-    - port: 50050
-      name: flightsql
-      targetPort: flightsql
-      protocol: TCP
+    http: 80
+    https: 443
+    flightsql: 50050
+
+  nodePorts:
+    http: ""
+    https: ""
+    flightsql: ""
+
   annotations: {}
 
 ###############################################################################
