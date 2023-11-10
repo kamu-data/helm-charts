@@ -57,6 +57,11 @@ spec:
                 secretKeyRef:
                   name: {{ $secretName }}
                   key: aws_endpoint
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_region
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
