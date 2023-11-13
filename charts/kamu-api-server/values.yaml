@@ -14,6 +14,14 @@ app:
   authGithubClientSecret: ""
   jwtSecret: ""
 
+  awsCredentials:
+    enabled: false
+    existingSecret: ""
+    awsEndpoint: ""
+    awsRegion: ""
+    awsAccessKeyId: ""
+    awsSecretAccessKey: ""
+
 ###############################################################################
 # Pod
 ###############################################################################

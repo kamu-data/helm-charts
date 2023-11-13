@@ -76,3 +76,11 @@ Computes a short hash of the configmap content to re-create it and trigger the r
 {{- define "kamu-api-server.config.sha" -}}
 {{ include "kamu-api-server.config.yaml" . | toJson | sha256sum | trunc 10 }}
 {{- end -}}
+
+{{- define "kamu-api-server.awsCredentialsSecretName" -}}
+{{- if .Values.app.awsCredentials.existingSecret }}
+{{- .Values.app.awsCredentials.existingSecret }}
+{{- else }}
+{{- printf "%s-aws-credentials" (include "kamu-api-server.fullname" .) }}
+{{- end }}
+{{- end }}

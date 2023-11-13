@@ -29,6 +29,30 @@
         },
         "jwtSecret": {
           "type": "string"
+        },
+        "awsCredentials": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "existingSecret": {
+              "type": "string"
+            },
+            "awsEndpoint": {
+              "type": "string"
+            },
+            "awsRegion": {
+              "type": "string"
+            },
+            "awsAccessKeyId": {
+              "type": "string"
+            },
+            "awsSecretAccessKey": {
+              "type": "string"
+            }
+          }
         }
       }
     }
