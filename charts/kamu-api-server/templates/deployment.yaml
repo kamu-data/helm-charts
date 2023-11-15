@@ -41,7 +41,7 @@ spec:
             - {{ printf "--repo-url=%s" .Values.app.datasetRepositoryUrl | quote }}
             - "run"
             - "--address=0.0.0.0"
-            - "--http-port=80"
+            - "--http-port=8080"
             - "--flightsql-port=50050"
           env:
             - name: KAMU_AUTH_GITHUB_CLIENT_ID
@@ -79,7 +79,7 @@ spec:
               mountPath: /opt/kamu/config.yaml
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
             - name: flightsql
               containerPort: 50050
