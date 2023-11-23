@@ -6,6 +6,14 @@ Expand the name of the chart.
 {{- end }}
 
 {{/*
+App Version
+*/}}
+{{- define "kamu-web-ui.appVersion" -}}
+{{- $version := semver .Chart.Version }}
+{{- $version.Major }}.{{ $version.Minor }}
+{{- end }}
+
+{{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
@@ -36,9 +44,7 @@ Common labels
 {{- define "kamu-web-ui.labels" -}}
 helm.sh/chart: {{ include "kamu-web-ui.chart" . }}
 {{ include "kamu-web-ui.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
+app.kubernetes.io/version: {{ include "kamu-web-ui.appVersion" . | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 

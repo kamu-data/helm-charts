@@ -18,8 +18,7 @@
           "properties": {}
         },
         "datasetRepositoryUrl": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "authGithubClientId": {
           "type": "string"
