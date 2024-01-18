@@ -44,6 +44,8 @@ spec:
             - "--http-port=8080"
             - "--flightsql-port=50050"
           env:
+            - name: RUST_BACKTRACE
+              value: "1"
             - name: KAMU_AUTH_GITHUB_CLIENT_ID
               value: {{ .Values.app.authGithubClientId | quote }}
             - name: KAMU_AUTH_GITHUB_CLIENT_SECRET
