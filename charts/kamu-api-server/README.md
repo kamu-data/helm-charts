@@ -1,8 +1,11 @@
 # kamu-api-server Helm Chart
+Installs the [kamu-api-server](https://github.com/kamu-data/kamu-platform) component of the [Kamu Node](https://docs.kamu.dev/node/).
 
-Installs the [kamu-api-server](https://github.com/kamu-data/kamu-platform) component of the [Kamu Compute Node](https://kamu.dev).
+## Getting Started
+For most up-to-date deployment instructions please refer to  [Kamu Node documentation](https://docs.kamu.dev/node/).
 
-## Get Repository Info
+## Common Helm Commands
+### Get Repository Info
 <!-- textlint-disable -->
 ```console
 helm repo add kamu https://kamu-data.github.io/helm-charts
@@ -12,7 +15,7 @@ helm repo update
 _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
 <!-- textlint-enable -->
 
-## Install Chart
+### Install Chart
 ```console
 helm install [RELEASE_NAME] kamu/kamu-api-server [flags]
 ```
@@ -21,7 +24,7 @@ _See [configuration](#configuration) below._
 
 _See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
 
-## Uninstall Chart
+### Uninstall Chart
 ```console
 helm uninstall [RELEASE_NAME]
 ```
@@ -30,14 +33,14 @@ This removes all the Kubernetes components associated with the chart and deletes
 
 _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation._
 
-## Upgrading Chart
+### Upgrade Chart
 ```console
 helm upgrade [RELEASE_NAME] kamu/kamu-api-server [flags]
 ```
 
 _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
 
-## Configuration
+### Configuration
 See [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing). To see all configurable options with detailed comments:
 
 ```console
