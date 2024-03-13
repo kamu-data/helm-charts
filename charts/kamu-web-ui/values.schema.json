@@ -30,10 +30,14 @@
                         "featureFlags": {
                             "type": "object",
                             "required": [
-                                "enableLogout"
+                                "enableLogout",
+                                "enableScheduling"
                             ],
                             "properties": {
                                 "enableLogout": {
+                                    "type": "boolean"
+                                },
+                                "enableScheduling": {
                                     "type": "boolean"
                                 }
                             }
