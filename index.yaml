@@ -417,6 +417,33 @@ entries:
           url: https://github.com/kamu-data/helm-charts
     apiVersion: v2
     appVersion: 0.16.0
+    created: "2024-03-13T15:28:53.500151915Z"
+    description: Web frontend component of the Kamu Compute Node
+    digest: 42e625e235beb6957cd66b11c46aa9f2af03c247a6293792b57d19e076f638c5
+    home: https://kamu.dev
+    icon: https://www.kamu.dev/images/kamu_logo_icon_bg_square.png
+    keywords:
+    - data
+    - datalake
+    - datawarehouse
+    - streaming
+    - web3
+    - kamu
+    - opendatafabric
+    name: kamu-web-ui
+    sources:
+    - https://github.com/kamu-data/kamu-web-ui/
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/kamu-web-ui-0.16.1/kamu-web-ui-0.16.1.tgz
+    version: 0.16.1
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/kamu-data/helm-charts
+    apiVersion: v2
+    appVersion: 0.16.0
     created: "2024-03-13T14:58:37.819519881Z"
     description: Web frontend component of the Kamu Compute Node
     digest: 28cc4d2d247750f3a5064e89810eac835e54c37761a99757e6b2c34193ebe854
@@ -703,4 +730,4 @@ entries:
     urls:
     - https://github.com/kamu-data/helm-charts/releases/download/minio-devel-0.1.0/minio-devel-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-13T14:58:37.819751063Z"
+generated: "2024-03-13T15:28:53.500246631Z"
