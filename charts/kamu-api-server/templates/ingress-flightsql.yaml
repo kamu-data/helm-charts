@@ -1,21 +1,22 @@
-{{- if .Values.ingress.enabled -}}
-{{- $fullName := include "kamu-web-ui.fullname" . -}}
-{{- $svcPort := .Values.service.ports.http -}}
+{{- $fullName := include "kamu-api-server.fullname" . -}}
+{{- $svcPort := .Values.service.ports.flightsql -}}
+{{- with .Values.flightsql.ingress -}}
+{{- if .enabled -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ printf "%s-flightsql" $fullName }}
   labels:
-    {{- include "kamu-web-ui.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+    {{- include "kamu-api-server.labels" $ | nindent 4 }}
+  {{- with .annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  ingressClassName: {{ .Values.ingress.className }}
-  {{- if .Values.ingress.tls }}
+  ingressClassName: {{ .className }}
+  {{- if .tls }}
   tls:
-    {{- range .Values.ingress.tls }}
+    {{- range .tls }}
     - hosts:
         {{- range .hosts }}
         - {{ . | quote }}
@@ -24,7 +25,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
+    {{- range .hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
@@ -38,4 +39,5 @@ spec:
                   number: {{ $svcPort }}
           {{- end }}
     {{- end }}
+{{- end }}
 {{- end }}
