@@ -6,9 +6,14 @@ app:
   # TODO: generate schema for config from DTOs
   config: {}
   # TODO: Move into config file
+
   # URL of the storage bucket for datasets (S3 or Minio)
-  # Example: https://api.kamu.dev/graphql
+  # Example: "s3://repo.example.com.us-west-2/"
   datasetRepositoryUrl: ""
+
+  # Specify "https" if the application is deployed behind a TLS-terminating reverse proxy, "http" otherwise
+  apiExternalHttpScheme: "https"
+
   # TODO: Move into secrets
   authGithubClientId: ""
   authGithubClientSecret: ""
