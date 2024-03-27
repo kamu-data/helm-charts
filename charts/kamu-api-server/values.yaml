@@ -17,6 +17,7 @@ app:
   # TODO: Move into secrets
   authGithubClientId: ""
   authGithubClientSecret: ""
+  # Generate using `openssl rand -hex 32`
   jwtSecret: ""
 
   awsCredentials:
