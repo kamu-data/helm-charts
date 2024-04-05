@@ -11,8 +11,8 @@ app:
   # Example: "s3://repo.example.com.us-west-2/"
   datasetRepositoryUrl: ""
 
-  # Specify "https" if the application is deployed behind a TLS-terminating reverse proxy, "http" otherwise
-  apiExternalHttpScheme: "https"
+  apiBaseUrlRest: ""
+  apiBaseUrlFlightsql: ""
 
   # TODO: Move into secrets
   authGithubClientId: ""
