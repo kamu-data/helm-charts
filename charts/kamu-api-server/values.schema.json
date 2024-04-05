@@ -7,10 +7,11 @@
       "required": [
         "config",
         "datasetRepositoryUrl",
-        "apiExternalHttpScheme",
         "authGithubClientId",
         "authGithubClientSecret",
-        "jwtSecret"
+        "jwtSecret",
+        "apiBaseUrlRest",
+        "apiBaseUrlFlightsql"
       ],
       "properties": {
         "config": {
@@ -22,8 +23,13 @@
           "type": "string",
           "format": "uri"
         },
-        "apiExternalHttpScheme": {
-          "type": "string"
+        "apiBaseUrlRest": {
+          "type": "string",
+          "format": "uri"
+        },
+        "apiBaseUrlFlightsql": {
+          "type": "string",
+          "format": "uri"
         },
         "authGithubClientId": {
           "type": "string"
