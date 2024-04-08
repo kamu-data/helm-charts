@@ -46,6 +46,8 @@ spec:
           env:
             - name: RUST_BACKTRACE
               value: "1"
+            - name: KAMU_BASE_URL_PLATFORM
+              value: {{ .Values.app.apiBaseUrlPlatform | quote }}
             - name: KAMU_BASE_URL_REST
               value: {{ .Values.app.apiBaseUrlRest | quote }}
             - name: KAMU_BASE_URL_FLIGHTSQL
