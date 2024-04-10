@@ -58,6 +58,10 @@ spec:
               value: {{ .Values.app.authGithubClientSecret | quote }}
             - name: KAMU_JWT_SECRET
               value: {{ .Values.app.jwtSecret | quote }}
+            {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
+            {{- end }}
             {{- if .Values.app.awsCredentials.enabled }}
             {{- $secretName := include "kamu-api-server.awsCredentialsSecretName" . }}
             - name: AWS_ENDPOINT
