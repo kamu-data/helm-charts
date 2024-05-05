@@ -1,5 +1,5 @@
-# kamu-api-server Helm Chart
-Installs the [kamu-api-server](https://github.com/kamu-data/kamu-node) component of the [Kamu Node](https://docs.kamu.dev/node/).
+# kamu-oracle-provider Helm Chart
+Installs the [kamu-oracle-provider](https://github.com/kamu-data/kamu-node) component of the [Kamu Node](https://docs.kamu.dev/node/).
 
 ## Getting Started
 For most up-to-date deployment instructions please refer to  [Kamu Node documentation](https://docs.kamu.dev/node/).
@@ -17,7 +17,7 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 
 ### Install Chart
 ```console
-helm install [RELEASE_NAME] kamu/kamu-api-server [flags]
+helm install [RELEASE_NAME] kamu/kamu-oracle-provider [flags]
 ```
 
 _See [configuration](#configuration) below._
@@ -35,7 +35,7 @@ _See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command doc
 
 ### Upgrade Chart
 ```console
-helm upgrade [RELEASE_NAME] kamu/kamu-api-server [flags]
+helm upgrade [RELEASE_NAME] kamu/kamu-oracle-provider [flags]
 ```
 
 _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
@@ -44,5 +44,5 @@ _See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documen
 See [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing). To see all configurable options with detailed comments:
 
 ```console
-helm show values kamu/kamu-api-server
+helm show values kamu/kamu-oracle-provider
 ```

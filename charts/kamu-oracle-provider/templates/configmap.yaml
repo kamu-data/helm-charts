@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "kamu-oracle-provider.fullname" . }}-{{ template "kamu-oracle-provider.config.sha" . }}
+  labels:
+    {{- include "kamu-oracle-provider.labels" . | nindent 4 }}
+data:
+  {{- include "kamu-oracle-provider.config.yaml" . | nindent 2 }}

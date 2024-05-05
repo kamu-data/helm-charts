@@ -1,6 +1,6 @@
 apiVersion: v2
-name: kamu-api-server
-description: API server component of the Kamu Compute Node
+name: kamu-oracle-provider
+description: Oracle provider that uses Kamu Node to supply data to blockchain smart contracts
 type: application
 version: 0.22.0
 appVersion: "0.22.0"

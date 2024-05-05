@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kamu-oracle-provider.fullname" . }}
+  labels:
+    {{- include "kamu-oracle-provider.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "kamu-oracle-provider.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with merge
+          .Values.podAnnotations
+          (ternary (dict "roll-pods" (randAlphaNum 5)) dict (eq .Values.image.pullPolicy "Always"))  }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "kamu-oracle-provider.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "kamu-oracle-provider.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "/opt/kamu/kamu-oracle-provider"
+            - "--config=/opt/kamu/config.yaml"
+            - "run"
+          env:
+            - name: RUST_BACKTRACE
+              value: "1"
+            {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- if .Values.app.awsCredentials.enabled }}
+            {{- $secretName := include "kamu-oracle-provider.awsCredentialsSecretName" . }}
+            - name: AWS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_endpoint
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_region
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_secret_access_key
+            {{- end }}
+          volumeMounts:
+            - name: configs
+              subPath: config.yaml
+              mountPath: /opt/kamu/config.yaml
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: configs
+          configMap:
+            name: {{ include "kamu-oracle-provider.fullname" . }}-{{ template "kamu-oracle-provider.config.sha" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
