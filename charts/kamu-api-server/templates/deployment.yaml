@@ -45,18 +45,6 @@ spec:
           env:
             - name: RUST_BACKTRACE
               value: "1"
-            - name: KAMU_BASE_URL_PLATFORM
-              value: {{ .Values.app.apiBaseUrlPlatform | quote }}
-            - name: KAMU_BASE_URL_REST
-              value: {{ .Values.app.apiBaseUrlRest | quote }}
-            - name: KAMU_BASE_URL_FLIGHTSQL
-              value: {{ .Values.app.apiBaseUrlFlightsql | quote }}
-            - name: KAMU_AUTH_GITHUB_CLIENT_ID
-              value: {{ .Values.app.authGithubClientId | quote }}
-            - name: KAMU_AUTH_GITHUB_CLIENT_SECRET
-              value: {{ .Values.app.authGithubClientSecret | quote }}
-            - name: KAMU_JWT_SECRET
-              value: {{ .Values.app.jwtSecret | quote }}
             {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key | quote }}
               value: {{ $value | quote }}
