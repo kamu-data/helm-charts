@@ -66,9 +66,9 @@
             "auth": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["jwtToken", "providers"],
+              "required": ["jwtSecret", "providers"],
               "properties": {
-                "jwtToken": {
+                "jwtSecret": {
                   "$comment": "Generate using `openssl rand -hex 32`",
                   "type": "string",
                   "minLength": 16
