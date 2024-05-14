@@ -3,7 +3,7 @@
 
 ## Repository content and structure
 
-This repository contains all charts published by Kamu. In general
+This repository contains all charts published by Kamu. In general,
 they could be classified into two categories:
 
 * **Product charts** manage different components of Kamu platform. They

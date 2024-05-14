@@ -38,7 +38,6 @@ spec:
           args:
             - "/opt/kamu/kamu-api-server"
             - "--config=/opt/kamu/config.yaml"
-            - {{ printf "--repo-url=%s" .Values.app.datasetRepositoryUrl | quote }}
             - "run"
             - "--address=0.0.0.0"
             - "--http-port=8080"

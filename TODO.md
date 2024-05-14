@@ -1,4 +1,4 @@
-- setup CI (linting,  testing, release)
+- setup CI (linting, testing)
 - chart.lock
 - reuse macros across charts
 - add chart changelogs
