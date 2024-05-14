@@ -7,10 +7,6 @@ app:
   config: {}
   # TODO: Move into config file
 
-  # URL of the storage bucket for datasets (S3 or Minio)
-  # Example: "s3://repo.example.com.us-west-2/"
-  datasetRepositoryUrl: ""
-
   apiBaseUrlPlatform: ""
   apiBaseUrlRest: ""
   apiBaseUrlFlightsql: ""

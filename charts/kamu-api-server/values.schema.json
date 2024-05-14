@@ -6,7 +6,6 @@
       "type": "object",
       "required": [
         "config",
-        "datasetRepositoryUrl",
         "authGithubClientId",
         "authGithubClientSecret",
         "jwtSecret",
@@ -19,10 +18,6 @@
           "type": "object",
           "required": [],
           "properties": {}
-        },
-        "datasetRepositoryUrl": {
-          "type": "string",
-          "format": "uri"
         },
         "apiBaseUrlPlatform": {
           "type": "string",
