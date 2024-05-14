@@ -5,40 +5,185 @@
     "app": {
       "type": "object",
       "required": [
-        "config",
-        "authGithubClientId",
-        "authGithubClientSecret",
-        "jwtSecret",
-        "apiBaseUrlPlatform",
-        "apiBaseUrlRest",
-        "apiBaseUrlFlightsql"
+        "config"
       ],
       "properties": {
         "config": {
           "type": "object",
-          "required": [],
-          "properties": {}
-        },
-        "apiBaseUrlPlatform": {
-          "type": "string",
-          "format": "uri"
-        },
-        "apiBaseUrlRest": {
-          "type": "string",
-          "format": "uri"
-        },
-        "apiBaseUrlFlightsql": {
-          "type": "string",
-          "format": "uri"
-        },
-        "authGithubClientId": {
-          "type": "string"
-        },
-        "authGithubClientSecret": {
-          "type": "string"
-        },
-        "jwtSecret": {
-          "type": "string"
+          "additionalProperties": false,
+          "required": [
+            "repo",
+            "auth",
+            "url"
+          ],
+          "properties": {
+            "runtime": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "workerThreads": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "maxBlockingThreads": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "threadStackSize": {
+                  "$comment": "The default stack size for Tokyo worker threads is 2 MB",
+                  "type": "integer",
+                  "minimum": 2097152
+                }
+              }
+            },
+            "repo": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["repoUrl"],
+              "properties": {
+                "repoUrl": {
+                  "$comment": "URL of the storage bucket for datasets (S3 or Minio). Example: \"s3://repo.example.com.us-west-2/\"",
+                  "type": "string",
+                  "format": "uri"
+                },
+                "caching": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [],
+                  "properties": {
+                    "registryCacheEnabled": {
+                      "type": "boolean"
+                    },
+                    "metadataLocalFsCachePath": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            },
+            "auth": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["jwtToken", "providers"],
+              "properties": {
+                "jwtToken": {
+                  "$comment": "Generate using `openssl rand -hex 32`",
+                  "type": "string",
+                  "minLength": 16
+                },
+                "providers": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["kind", "clientId", "clientSecret"],
+                        "properties": {
+                          "kind": {
+                            "const": "github"
+                          },
+                          "clientId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "clientSecret": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["kind", "accounts"],
+                        "properties": {
+                          "kind": {
+                            "const": "password"
+                          },
+                          "accounts": {
+                            "type": "array",
+                            "minItems": 1,
+                            "uniqueItems": true,
+                            "items": {
+                              "type": "object",
+                              "required": ["accountName", "password"],
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "accountName": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "password": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "email": {
+                                  "type": "string",
+                                  "format": "email"
+                                },
+                                "displayName": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "accountType": {
+                                  "type": "string",
+                                  "enum": ["user", "organization"]
+                                },
+                                "provider": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "avatarUrl": {
+                                  "type": "string",
+                                  "format": "url"
+                                },
+                                "registeredAt": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "isAdmin": {
+                                  "type": "boolean"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "url": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "baseUrlPlatform",
+                "baseUrlRest",
+                "baseUrlFlightsql"
+              ],
+              "properties": {
+                "baseUrlPlatform": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "baseUrlRest": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "baseUrlFlightsql": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          }
         },
         "awsCredentials": {
           "type": "object",

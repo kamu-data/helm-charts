@@ -5,17 +5,6 @@
 app:
   # TODO: generate schema for config from DTOs
   config: {}
-  # TODO: Move into config file
-
-  apiBaseUrlPlatform: ""
-  apiBaseUrlRest: ""
-  apiBaseUrlFlightsql: ""
-
-  # TODO: Move into secrets
-  authGithubClientId: ""
-  authGithubClientSecret: ""
-  # Generate using `openssl rand -hex 32`
-  jwtSecret: ""
 
   awsCredentials:
     enabled: false
