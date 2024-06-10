@@ -13,6 +13,7 @@
           "additionalProperties": false,
           "required": [
             "repo",
+            "uploadRepo",
             "auth",
             "url"
           ],
@@ -40,7 +41,9 @@
             "repo": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["repoUrl"],
+              "required": [
+                "repoUrl"
+              ],
               "properties": {
                 "repoUrl": {
                   "$comment": "URL of the storage bucket for datasets (S3 or Minio). Example: \"s3://repo.example.com.us-west-2/\"",
@@ -63,10 +66,49 @@
                 }
               }
             },
+            "uploadRepo": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "maxFileSizeMb",
+                "storage"
+              ],
+              "properties": {
+                "maxFileSizeMb": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "$comment": "Maximum upload file size in megabytes"
+                },
+                "storage": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "s3",
+                        "local"
+                      ]
+                    },
+                    "bucketS3Url": {
+                      "$comment": "URL of the storage bucket for temporary uploads (S3 or Minio). Example: \"s3://upload.example.com.us-west-2/\"",
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            },
             "auth": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["jwtSecret", "providers"],
+              "required": [
+                "jwtSecret",
+                "providers"
+              ],
               "properties": {
                 "jwtSecret": {
                   "$comment": "Generate using `openssl rand -hex 32`",
@@ -80,7 +122,11 @@
                       {
                         "type": "object",
                         "additionalProperties": false,
-                        "required": ["kind", "clientId", "clientSecret"],
+                        "required": [
+                          "kind",
+                          "clientId",
+                          "clientSecret"
+                        ],
                         "properties": {
                           "kind": {
                             "const": "github"
@@ -98,7 +144,10 @@
                       {
                         "type": "object",
                         "additionalProperties": false,
-                        "required": ["kind", "accounts"],
+                        "required": [
+                          "kind",
+                          "accounts"
+                        ],
                         "properties": {
                           "kind": {
                             "const": "password"
@@ -109,7 +158,10 @@
                             "uniqueItems": true,
                             "items": {
                               "type": "object",
-                              "required": ["accountName", "password"],
+                              "required": [
+                                "accountName",
+                                "password"
+                              ],
                               "properties": {
                                 "id": {
                                   "type": "string",
@@ -133,7 +185,10 @@
                                 },
                                 "accountType": {
                                   "type": "string",
-                                  "enum": ["user", "organization"]
+                                  "enum": [
+                                    "user",
+                                    "organization"
+                                  ]
                                 },
                                 "provider": {
                                   "type": "string",
