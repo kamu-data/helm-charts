@@ -73,18 +73,18 @@ affinity: {}
 # Service
 ###############################################################################
 
-service:
-  type: ClusterIP
-
-  ports:
-    http: 8080
-    https: 8443
-
-  nodePorts:
-    http: ""
-    https: ""
-
-  annotations: {}
+# service:
+#   type: ClusterIP
+# 
+#   ports:
+#     http: 8080
+#     https: 8443
+# 
+#   nodePorts:
+#     http: ""
+#     https: ""
+# 
+#   annotations: {}
 
 ###############################################################################
 # Autoscaling
