@@ -1146,6 +1146,34 @@ entries:
           url: https://github.com/kamu-data/helm-charts
     apiVersion: v2
     appVersion: 0.26.0
+    created: "2024-06-17T22:45:06.061512468Z"
+    description: Oracle provider that uses Kamu Node to supply data to blockchain
+      smart contracts
+    digest: fa65733bcc8b959e2654e820677d6479a14d6f50c13f08bd4d73f432009e92a6
+    home: https://kamu.dev
+    icon: https://www.kamu.dev/images/kamu_logo_icon_bg_square.png
+    keywords:
+    - data
+    - datalake
+    - datawarehouse
+    - streaming
+    - web3
+    - kamu
+    - opendatafabric
+    name: kamu-oracle-provider
+    sources:
+    - https://github.com/kamu-data/kamu-node/
+    type: application
+    urls:
+    - https://github.com/kamu-data/helm-charts/releases/download/kamu-oracle-provider-0.26.1/kamu-oracle-provider-0.26.1.tgz
+    version: 0.26.1
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/kamu-data/helm-charts
+    apiVersion: v2
+    appVersion: 0.26.0
     created: "2024-06-17T22:28:13.591940629Z"
     description: Oracle provider that uses Kamu Node to supply data to blockchain
       smart contracts
@@ -1678,4 +1706,4 @@ entries:
     urls:
     - https://github.com/kamu-data/helm-charts/releases/download/minio-devel-0.1.0/minio-devel-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-17T22:28:13.592356916Z"
+generated: "2024-06-17T22:45:06.061640365Z"
