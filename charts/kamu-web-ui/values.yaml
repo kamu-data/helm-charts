@@ -8,7 +8,9 @@ app:
     # IMPORTANT: Must be a externally resolvable, as application runs in a browser
     # Example: https://api.kamu.dev/graphql
     apiServerGqlUrl: ""
+    apiServerHttpUrl: ""
     githubClientId: ""
+    ingestUploadFileLimitMb: 50
     featureFlags:
       enableLogout: true
       enableScheduling: true

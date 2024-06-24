@@ -15,17 +15,28 @@
                     "type": "object",
                     "required": [
                         "apiServerGqlUrl",
+                        "apiServerHttpUrl",
                         "githubClientId",
                         "featureFlags"
                     ],
                     "properties": {
                         "apiServerGqlUrl": {
                             "type": "string",
+                            "format": "uri",
+                            "minLength": 1
+                        },
+                        "apiServerHttpUrl": {
+                            "type": "string",
+                            "format": "uri",
                             "minLength": 1
                         },
                         "githubClientId": {
                             "type": "string",
                             "minLength": 1
+                        },
+                        "ingestUploadFileLimitMb": {
+                            "type": "integer",
+                            "minimum": 1
                         },
                         "featureFlags": {
                             "type": "object",
