@@ -39,7 +39,7 @@ spec:
             - "migrate"
             - "run"
             - "--source"
-            - {{ .Values.imageMigrations.baseMigrationsPath }}:{{ .Values.imageMigrations.databaseProvider }}
+            - {{ .Values.imageMigrations.baseMigrationsPath }}{{ .Values.imageMigrations.databaseProvider }}
             - "--database-url"
             - {{ .Values.imageMigrations.databaseConnectionString }}
           env:
