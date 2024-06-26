@@ -38,8 +38,7 @@ imageMigrations:
   repository: ghcr.io/kamu-data/sqlx-cli-with-migrations
   pullPolicy: IfNotPresent
   tag: ""
-  baseMigrationsPath: "./migrations/"
-  databaseProvider: ""
+  migrationsPath: ""
   databaseConnectionString: ""
 
 imagePullSecrets: []

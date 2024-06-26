@@ -39,9 +39,9 @@ spec:
             - "migrate"
             - "run"
             - "--source"
-            - "{{ .Values.imageMigrations.baseMigrationsPath }}{{ .Values.imageMigrations.databaseProvider }}""
+            - {{ .Values.imageMigrations.migrationsPath | quote }}
             - "--database-url"
-            - "{{ .Values.imageMigrations.databaseConnectionString }}""
+            - {{ .Values.imageMigrations.databaseConnectionString | quote }}
           env:
             - name: RUST_BACKTRACE
               value: "1"
