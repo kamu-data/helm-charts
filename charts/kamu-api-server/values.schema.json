@@ -275,8 +275,8 @@
                 },
                 "host": {
                   "type": "string",
-                  "format": "uri",
-                  "description": "Remote database host address"
+                  "minLength": 1,
+                  "description": "Remote database host name"
                 },
                 "port": {
                   "type": "integer",
