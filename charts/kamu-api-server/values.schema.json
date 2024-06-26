@@ -237,31 +237,77 @@
                   "format": "uri"
                 }
               }
+            },
+            "database": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "provider"
+              ],
+              "properties": {
+                "provider": {
+                  "type": "string",
+                  "enum": [
+                    "inMemory",
+                    "sqlite",
+                    "postgres"
+                  ]
+                },
+                "databasePath": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "SQLite database path"
+                },
+                "user": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Remote database user"
+                },
+                "password": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Remote database password"
+                },
+                "databaseName": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Remote database name"
+                },
+                "host": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "Remote database host address"
+                },
+                "port": {
+                  "type": "integer",
+                  "description": "Remote database port"
+                }
+              }
             }
           }
-        },
-        "awsCredentials": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "enabled": {
-              "type": "boolean"
-            },
-            "existingSecret": {
-              "type": "string"
-            },
-            "awsEndpoint": {
-              "type": "string"
-            },
-            "awsRegion": {
-              "type": "string"
-            },
-            "awsAccessKeyId": {
-              "type": "string"
-            },
-            "awsSecretAccessKey": {
-              "type": "string"
-            }
+        }
+      },
+      "awsCredentials": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "existingSecret": {
+            "type": "string"
+          },
+          "awsEndpoint": {
+            "type": "string"
+          },
+          "awsRegion": {
+            "type": "string"
+          },
+          "awsAccessKeyId": {
+            "type": "string"
+          },
+          "awsSecretAccessKey": {
+            "type": "string"
           }
         }
       }
