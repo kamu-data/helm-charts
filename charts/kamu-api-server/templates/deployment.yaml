@@ -29,6 +29,24 @@ spec:
       serviceAccountName: {{ include "kamu-api-server.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: database-migrations
+          image: "{{ .Values.imageMigrations.repository }}:{{ .Values.imageMigrations.tag }}"
+          imagePullPolicy: {{ .Values.imageMigrations.pullPolicy }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          args:
+            - "migrate"
+            - "run"
+            - "--source"
+            - {{ .Values.imageMigrations.baseMigrationsPath }}:{{ .Values.imageMigrations.databaseProvider }}
+            - "--database-url"
+            - {{ .Values.imageMigrations.databaseConnectionString }}
+          env:
+            - name: RUST_BACKTRACE
+              value: "1"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
