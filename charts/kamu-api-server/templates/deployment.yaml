@@ -35,18 +35,25 @@ spec:
           imagePullPolicy: {{ .Values.imageMigrations.pullPolicy }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          args:
-            - "migrate"
-            - "run"
-            - "--source"
-            - {{ .Values.imageMigrations.migrationsPath | quote }}
-            - "--database-url"
-            - {{ .Values.imageMigrations.databaseConnectionString | quote }}
+          command: [ "/bin/sh", "-c", "/fetch-db-secret.sh {{ .Values.imageMigrations.databaseSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} && sqlx migrate run --source {{ .Values.imageMigrations.migrationsPath }} --database-url $DB_CONNECTION_STRING" ]
           env:
             - name: RUST_BACKTRACE
               value: "1"
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_region
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: fetch-db-secret
+              mountPath: /fetch-db-secret.sh
+              subPath: fetch-db-secret.sh          
+      volumes:
+        - name: fetch-db-secret
+          configMap:
+            name: fetch-db-secret-script
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
