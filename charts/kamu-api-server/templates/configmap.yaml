@@ -6,5 +6,5 @@ metadata:
     {{- include "kamu-api-server.labels" . | nindent 4 }}
 data:
   {{- include "kamu-api-server.config.yaml" . | nindent 2 }}
-  fetch-db-secret.sh: : |-
+  fetch-db-secret.sh: |
     {{ .Files.Get "fetch_db_secret.sh" | nindent 4}}
