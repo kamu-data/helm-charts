@@ -258,15 +258,51 @@
                   "minLength": 1,
                   "description": "SQLite database path"
                 },
-                "user": {
-                  "type": "string",
-                  "minLength": 1,
-                  "description": "Remote database user"
-                },
-                "password": {
-                  "type": "string",
-                  "minLength": 1,
-                  "description": "Remote database password"
+                "credentialsPolicy": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "source"
+                  ],
+                  "properties": {
+                    "source": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "kind"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "enum": [
+                            "rawPassword",
+                            "awsSecret",
+                            "awsIamToken"
+                          ]
+                        },
+                        "userName": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Remote database user name: used in Raw Password and IAM token modes"
+                        },
+                        "rawPassword": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Remote database raw password"
+                        },
+                        "secretName": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "AWS secret name to access user name and password from"
+                        }
+                      }
+                    },
+                    "rotationFrequencyInMinutes": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "How often (in minutes) password rotates"
+                    }
+                  }
                 },
                 "databaseName": {
                   "type": "string",
