@@ -35,7 +35,10 @@ spec:
           imagePullPolicy: {{ .Values.imageMigrations.pullPolicy }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          command: [ "/bin/sh", "-c", "/fetch-db-secret.sh {{ .Values.imageMigrations.databaseSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} && sqlx migrate run --source {{ .Values.imageMigrations.migrationsPath }} --database-url $DB_CONNECTION_STRING" ]
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "/fetch-db-secret.sh {{ .Values.imageMigrations.databaseSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} && sqlx migrate run --source {{ .Values.imageMigrations.migrationsPath }} --database-url $$DB_CONNECTION_STRING"
           env:
             - name: RUST_BACKTRACE
               value: "1"
