@@ -39,7 +39,11 @@ imageMigrations:
   pullPolicy: IfNotPresent
   tag: ""
   migrationsPath: ""
-  databaseConnectionString: ""
+  databaseSecretName: ""
+  databaseHost: ""
+  databasePort: 5432
+  databaseName: ""
+
 
 imagePullSecrets: []
 nameOverride: ""
