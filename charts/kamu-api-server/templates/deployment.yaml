@@ -39,17 +39,35 @@ spec:
           env:
             - name: RUST_BACKTRACE
               value: "1"
+            {{- if .Values.app.awsCredentials.enabled }}
+            {{- $secretName := include "kamu-api-server.awsCredentialsSecretName" . }}
+            - name: AWS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_endpoint
             - name: AWS_REGION
               valueFrom:
                 secretKeyRef:
                   name: {{ $secretName }}
                   key: aws_region
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $secretName }}
+                  key: aws_secret_access_key
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: fetch-db-secret
               mountPath: /fetch-db-secret.sh
-              subPath: fetch-db-secret.sh          
+              subPath: fetch-db-secret.sh
       volumes:
         - name: fetch-db-secret
           configMap:
