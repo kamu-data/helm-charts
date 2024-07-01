@@ -74,21 +74,8 @@ spec:
               mountPath: /fetch-db-secret.sh
               subPath: fetch-db-secret.sh
             - name: run-db-migrations
-              mountPath: /scripts/run-db-migrations.sh
+              mountPath: /run-db-migrations.sh
               subPath: run-db-migrations.sh
-      volumes:
-        - name: fetch-db-secret
-          configMap:
-            name: db-scripts
-            items:
-              - key: fetch-db-secret.sh
-                path: fetch-db-secret.sh
-        - name: run-db-migrations
-          configMap:
-            name: db-scripts
-            items:
-              - key: run-db-migrations.sh
-                path: run-db-migrations.sh
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -157,6 +144,20 @@ spec:
         - name: configs
           configMap:
             name: {{ include "kamu-api-server.fullname" . }}-{{ template "kamu-api-server.config.sha" . }}
+        - name: fetch-db-secret
+          configMap:
+            name: db-scripts
+            defaultMode: 0755
+            items:
+              - key: fetch-db-secret.sh
+                path: fetch-db-secret.sh
+        - name: run-db-migrations
+          configMap:
+            name: db-scripts
+            defaultMode: 0755
+            items:
+              - key: run-db-migrations.sh
+                path: run-db-migrations.sh
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
