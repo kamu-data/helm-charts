@@ -39,8 +39,8 @@ spec:
             - "/bin/sh"
             - "-c"
             - |
-              /bin/sh /fetch-db-secret.sh {{ .Values.imageMigrations.databaseSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} &&
-              /bin/sh /run-db-migrations.sh {{ .Values.imageMigrations.migrationsPath }}
+              /scripts/fetch-db-secret.sh {{ .Values.imageMigrations.databaseSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseProvider }} {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} &&
+              /scripts/run-db-migrations.sh {{ .Values.imageMigrations.migrationsPath }}
           env:
             - name: RUST_BACKTRACE
               value: "1"
@@ -69,13 +69,6 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - name: fetch-db-secret
-              mountPath: /fetch-db-secret.sh
-              subPath: fetch-db-secret.sh
-            - name: run-db-migrations
-              mountPath: /run-db-migrations.sh
-              subPath: run-db-migrations.sh
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -144,18 +137,6 @@ spec:
         - name: configs
           configMap:
             name: {{ include "kamu-api-server.fullname" . }}-{{ template "kamu-api-server.config.sha" . }}
-        - name: fetch-db-secret
-          configMap:
-            name: db-scripts
-            items:
-              - key: fetch-db-secret.sh
-                path: fetch-db-secret.sh
-        - name: run-db-migrations
-          configMap:
-            name: db-scripts
-            items:
-              - key: run-db-migrations.sh
-                path: run-db-migrations.sh
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

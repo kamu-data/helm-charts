@@ -40,6 +40,7 @@ imageMigrations:
   tag: ""
   migrationsPath: ""
   databaseSecretName: ""
+  databaseProvider: postgresql
   databaseHost: ""
   databasePort: 5432
   databaseName: ""
