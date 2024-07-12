@@ -6,14 +6,6 @@ app:
   # TODO: generate schema for config from DTOs
   config: {}
 
-  awsCredentials:
-    enabled: false
-    existingSecret: ""
-    awsEndpoint: ""
-    awsRegion: ""
-    awsAccessKeyId: ""
-    awsSecretAccessKey: ""
-
 
 ###############################################################################
 # Pod
@@ -68,31 +60,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-###############################################################################
-# Service
-###############################################################################
-
-# service:
-#   type: ClusterIP
-# 
-#   ports:
-#     http: 8080
-#     https: 8443
-# 
-#   nodePorts:
-#     http: ""
-#     https: ""
-# 
-#   annotations: {}
-
-###############################################################################
-# Autoscaling
-###############################################################################
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
