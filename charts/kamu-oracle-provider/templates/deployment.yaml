@@ -44,29 +44,6 @@ spec:
             - name: {{ $key | quote }}
               value: {{ $value | quote }}
             {{- end }}
-            {{- if .Values.app.awsCredentials.enabled }}
-            {{- $secretName := include "kamu-oracle-provider.awsCredentialsSecretName" . }}
-            - name: AWS_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $secretName }}
-                  key: aws_endpoint
-            - name: AWS_REGION
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $secretName }}
-                  key: aws_region
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $secretName }}
-                  key: aws_access_key_id
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $secretName }}
-                  key: aws_secret_access_key
-            {{- end }}
           volumeMounts:
             - name: configs
               subPath: config.yaml
