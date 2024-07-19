@@ -50,6 +50,9 @@
                                 },
                                 "enableScheduling": {
                                     "type": "boolean"
+                                },
+                                "enableDatasetEnvVarsManagment": {
+                                    "type": "boolean"
                                 }
                             }
                         }

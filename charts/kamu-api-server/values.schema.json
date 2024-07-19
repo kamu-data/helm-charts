@@ -102,6 +102,21 @@
                 }
               }
             },
+            "datasetEnvVars": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "encryptionKey"
+              ],
+              "properties": {
+                "encryptionKey": {
+                  "type": "string",
+                  "minLength": 32,
+                  "maxLength": 32,
+                  "$comment": "Encryption key for dataset env vars feature"
+                }
+              }
+            },
             "auth": {
               "type": "object",
               "additionalProperties": false,
