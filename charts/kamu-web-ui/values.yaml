@@ -14,6 +14,7 @@ app:
     featureFlags:
       enableLogout: true
       enableScheduling: true
+      enableDatasetEnvVarsManagment: true
 
 ###############################################################################
 # Pod
