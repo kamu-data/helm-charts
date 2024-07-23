@@ -5,6 +5,7 @@
 app:
   # TODO: generate schema for config from DTOs
   config:
+    http_address: "0.0.0.0"
     http_port: 8080
 
 
