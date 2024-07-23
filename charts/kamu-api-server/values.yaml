@@ -4,7 +4,10 @@
 
 app:
   # TODO: generate schema for config from DTOs
-  config: {}
+  config:
+    engine:
+      runtime: podman
+      networkNs: host
 
   awsCredentials:
     enabled: false
