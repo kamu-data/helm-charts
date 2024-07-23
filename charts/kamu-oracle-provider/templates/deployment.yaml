@@ -54,7 +54,7 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /system/health
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
