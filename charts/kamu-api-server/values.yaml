@@ -49,6 +49,7 @@ imageMigrations:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+enableDatabase: false
 
 serviceAccount:
   # Specifies whether a service account should be created

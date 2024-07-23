@@ -29,6 +29,7 @@ spec:
       serviceAccountName: {{ include "kamu-api-server.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.enableDatabase }}
       initContainers:
         - name: database-migrations
           image: "{{ .Values.imageMigrations.repository }}:{{ .Values.imageMigrations.tag }}"
@@ -69,6 +70,7 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
