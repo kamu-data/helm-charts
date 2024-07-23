@@ -18,6 +18,21 @@
             "url"
           ],
           "properties": {
+            "engine": {
+              "type": "object",
+              "required": [],
+              "properties": {}
+            },
+            "protocol": {
+              "type": "object",
+              "required": [],
+              "properties": {}
+            },
+            "source": {
+              "type": "object",
+              "required": [],
+              "properties": {}
+            },
             "runtime": {
               "type": "object",
               "additionalProperties": false,
