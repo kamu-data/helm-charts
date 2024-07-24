@@ -3,6 +3,8 @@
 ###############################################################################
 
 app:
+  logLevel: "debug,kamu=trace,alloy_transport_http=info,alloy_rpc_client=info,reqwest=info,hyper=info,h2=info"
+
   # TODO: generate schema for config from DTOs
   config:
     http_address: "0.0.0.0"

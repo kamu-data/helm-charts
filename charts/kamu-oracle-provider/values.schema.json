@@ -5,9 +5,13 @@
     "app": {
       "type": "object",
       "required": [
+        "logLevel",
         "config"
       ],
       "properties": {
+        "logLevel": {
+          "type": "string"
+        },
         "config": {
           "type": "object",
           "required": [],
