@@ -3,7 +3,7 @@
 ###############################################################################
 
 app:
-  logLevel: "debug,kamu=trace,alloy_transport_http=info,alloy_rpc_client=info,reqwest=info,hyper=info,h2=info"
+  logLevel: "debug,kamu=trace,alloy_transport_http=info,alloy_rpc_client=info,reqwest=info,hyper=info,h2=info,rustls=info"
 
   # TODO: generate schema for config from DTOs
   config:
