@@ -124,15 +124,17 @@
             "datasetEnvVars": {
               "type": "object",
               "additionalProperties": false,
-              "required": [
-                "encryptionKey"
-              ],
+              "required": [],
               "properties": {
                 "encryptionKey": {
                   "type": "string",
                   "minLength": 32,
                   "maxLength": 32,
                   "$comment": "Encryption key for dataset env vars feature"
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "$comment": "Argument to identify should DatasetEnvVars feature should be enabled or not"
                 }
               }
             },
