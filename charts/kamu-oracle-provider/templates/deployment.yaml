@@ -42,10 +42,13 @@ spec:
               value: "1"
             - name: RUST_LOG
               value: {{ .Values.app.logLevel | quote }}
-            {{- range $key, $value := .Values.extraEnv }}
-            - name: {{ $key | quote }}
-              value: {{ $value | quote }}
+            {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
             {{- end }}
+          {{- with .Values.extraEnvFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: configs
               subPath: config.yaml

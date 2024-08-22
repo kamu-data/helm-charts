@@ -383,6 +383,107 @@
           }
         }
       }
+    },
+    "extraEnv": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "valueFrom": {
+            "type": "object",
+            "properties": {
+              "configMapKeyRef": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "object"
+                  },
+                  "optional": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "fieldRef": {
+                "type": "object",
+                "properties": {
+                  "apiVersion": {
+                    "type": "string"
+                  },
+                  "fieldPath": {
+                    "type": "string"
+                  }
+                }
+              },
+              "resourceFieldRef": {
+                "type": "object",
+                "properties": {
+                  "resource": {"type": "string"},
+                  "containerName": {"type": "string"},
+                  "divisor": {"type": "string"}
+                }
+              },
+              "secretKeyRef": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "object"
+                  },
+                  "optional": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "extraEnvFrom": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "configMapRef": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "optional": {
+                "type": "boolean"
+              }
+            }
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "secretRef": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "optional": "boolean"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
