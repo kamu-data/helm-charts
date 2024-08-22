@@ -89,10 +89,6 @@ spec:
               value: "1"
             - name: RUST_LOG
               value: {{ .Values.app.logLevel | quote }}
-            {{- range $key, $value := .Values.extraEnv }}
-            - name: {{ $key | quote }}
-              value: {{ $value | quote }}
-            {{- end }}
             {{- if .Values.app.awsCredentials.enabled }}
             {{- $secretName := include "kamu-api-server.awsCredentialsSecretName" . }}
             - name: AWS_ENDPOINT
@@ -116,6 +112,13 @@ spec:
                   name: {{ $secretName }}
                   key: aws_secret_access_key
             {{- end }}
+            {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- with .Values.extraEnvFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: configs
               subPath: config.yaml
