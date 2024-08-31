@@ -50,7 +50,6 @@ imageMigrations:
   databasePort: 5432
   databaseName: ""
 
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -67,6 +66,16 @@ serviceAccount:
 
 extraEnv: []
 extraEnvFrom: []
+
+startupProbe: {}
+readinessProbe:
+  httpGet:
+    path: /system/health?type=readiness
+    port: http
+livenessProbe:
+  httpGet:
+    path: /system/health
+    port: http
 
 podAnnotations: {}
 

@@ -52,6 +52,16 @@ serviceAccount:
 extraEnv: []
 extraEnvFrom: []
 
+startupProbe: {}
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
 podAnnotations: {}
 
 podSecurityContext: {}

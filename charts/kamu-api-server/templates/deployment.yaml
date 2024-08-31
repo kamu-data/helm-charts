@@ -130,14 +130,15 @@ spec:
             - name: flightsql
               containerPort: 50050
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /system/health
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /system/health?type=readiness
-              port: http
+          {{- if .Values.startupProbe }}
+          readinessProbe: {{- .Values.startupProbe | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe: {{- .Values.readinessProbe | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe: {{- .Values.livenessProbe | toYaml | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
