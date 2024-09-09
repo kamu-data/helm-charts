@@ -27,6 +27,16 @@
               "required": [],
               "properties": {}
             },
+            "identity": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "privateKey": {
+                  "type": "string"
+                }
+              }
+            },
             "protocol": {
               "type": "object",
               "required": [],
@@ -426,9 +436,15 @@
               "resourceFieldRef": {
                 "type": "object",
                 "properties": {
-                  "resource": {"type": "string"},
-                  "containerName": {"type": "string"},
-                  "divisor": {"type": "string"}
+                  "resource": {
+                    "type": "string"
+                  },
+                  "containerName": {
+                    "type": "string"
+                  },
+                  "divisor": {
+                    "type": "string"
+                  }
                 }
               },
               "secretKeyRef": {
