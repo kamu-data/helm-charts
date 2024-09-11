@@ -8,6 +8,14 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  # TODO: This is an unfortunate temporary measure to prevent race conditions between
+  # the old process that is executing flows/tasks and processing domain events
+  # and a new replacement process that will try to pick up unprocessed work upon startup.
+  # Soon this will be replaced by proper DB locking / leader election, but meanwhile `Recreate`
+  # strategy ensures that the old pod is killed before deploying a new one. This significantly
+  # increases the chance of causing downtime if a replacement pod fails to start correctly.
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       {{- include "kamu-api-server.selectorLabels" . | nindent 6 }}
