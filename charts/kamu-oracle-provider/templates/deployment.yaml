@@ -48,6 +48,10 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             {{- end }}
+            {{- if .Values.opentelemetry.enabled }}
+            - name: KAMU_OTEL_OTLP_ENDPOINT
+              value: {{ .Values.opentelemetry.url }}
+            {{- end }}
             {{- with .Values.extraEnv }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
