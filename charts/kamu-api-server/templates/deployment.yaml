@@ -97,6 +97,12 @@ spec:
               value: "1"
             - name: RUST_LOG
               value: {{ .Values.app.logLevel | quote }}
+            {{- if .Values.nodeIpEnvEnabled }}
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            {{- end }}
             {{- if .Values.app.awsCredentials.enabled }}
             {{- $secretName := include "kamu-api-server.awsCredentialsSecretName" . }}
             - name: AWS_ENDPOINT
