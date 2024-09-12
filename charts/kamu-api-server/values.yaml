@@ -64,6 +64,10 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+opentelemetry:
+  enabled: false
+  url: ""
+
 nodeIpEnvEnabled: false
 
 extraEnv: []

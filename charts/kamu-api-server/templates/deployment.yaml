@@ -103,6 +103,10 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             {{- end }}
+            {{- if .Values.opentelemetry.enabled }}
+            - name: KAMU_OTEL_OTLP_ENDPOINT
+              value: {{ .Values.opentelemetry.url }}
+            {{- end }}
             {{- if .Values.app.awsCredentials.enabled }}
             {{- $secretName := include "kamu-api-server.awsCredentialsSecretName" . }}
             - name: AWS_ENDPOINT
