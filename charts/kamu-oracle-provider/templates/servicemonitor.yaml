@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "kamu-api-server.fullname" . }}
+  labels:
+    {{- include "kamu-api-server.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "kamu-api-server.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - interval: 15s
+    path: /system/metrics
+    port: http
+    scheme: http
