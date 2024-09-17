@@ -48,8 +48,6 @@ opentelemetry:
   enabled: false
   url: ""
 
-nodeIpEnvEnabled: false
-
 extraEnv: []
 extraEnvFrom: []
 
