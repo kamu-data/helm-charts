@@ -97,12 +97,10 @@ spec:
               value: "1"
             - name: RUST_LOG
               value: {{ .Values.app.logLevel | quote }}
-            {{- if .Values.nodeIpEnvEnabled }}
-            - name: NODE_IP
+            - name: HOST_IP
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-            {{- end }}
             {{- if .Values.opentelemetry.enabled }}
             - name: KAMU_OTEL_OTLP_ENDPOINT
               value: {{ .Values.opentelemetry.url }}
