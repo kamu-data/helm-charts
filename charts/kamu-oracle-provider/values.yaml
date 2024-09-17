@@ -46,7 +46,7 @@ serviceAccount:
 
 opentelemetry:
   enabled: false
-  url: ""
+  url: "http://$(HOST_IP):4317"
 
 extraEnv: []
 extraEnvFrom: []
