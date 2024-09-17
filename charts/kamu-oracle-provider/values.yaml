@@ -44,6 +44,10 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+opentelemetry:
+  enabled: false
+  url: "http://$(HOST_IP):4317"
+
 extraEnv: []
 extraEnvFrom: []
 
