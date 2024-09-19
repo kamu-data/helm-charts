@@ -1,0 +1,26 @@
+{{- if .Values.app.alerts.enabled -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "kamu-oracle-provider.fullname" . }}
+  labels:
+    {{- include "kamu-oracle-provider.labels" . | nindent 4 }}
+spec:
+  groups:
+  - name: {{ include "kamu-oracle-provider.fullname" . }}
+    rules:
+      - alert: WalletBalanceLow
+        expr: >
+          kamu_oracle_provider_wallet_balance_wei {
+            namespace="{{ .Release.Namespace }}",
+            chain_id="{{ .Values.app.config.chain_id }}",
+          } < {{ .Values.app.alerts.walletBalanceLow.threshold }}
+        annotations:
+          message: >
+            Oracle provider {{ .Release.Namespace }}/{{ "{{" }} $labels.pod {{ "}}" }}
+            wallet balance for chain {{ .Values.app.config.chain_id }}
+            has decreased below {{ .Values.app.alerts.walletBalanceLow.threshold }} {{ .Values.app.alerts.walletBalanceLow.unit }}.
+          summary: Wallet Balance Low
+        labels:
+          severity: warning
+{{- end }}

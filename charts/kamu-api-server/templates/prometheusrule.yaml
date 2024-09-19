@@ -1,0 +1,25 @@
+{{- if .Values.app.alerts.enabled -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "kamu-api-server.fullname" . }}
+  labels:
+    {{- include "kamu-api-server.labels" . | nindent 4 }}
+spec:
+  groups:
+  - name: {{ include "kamu-api-server.fullname" . }}
+    rules:
+      - alert: OutboxFailedConsumers
+        expr: >
+          kamu_api_server_outbox_failed_consumers_total {
+            namespace="{{ .Release.Namespace }}",
+            service="{{ include "kamu-api-server.fullname" . }}",
+          } > 0
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ include "kamu-api-server.fullname" . }}
+            have stopped processing some outbox messages and requires manual intervention.
+          summary: Outbox Consumption Failed
+        labels:
+          severity: critical
+{{- end }}

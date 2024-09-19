@@ -19,6 +19,10 @@ app:
     awsAccessKeyId: ""
     awsSecretAccessKey: ""
 
+  # Application-level Prometheus alerts
+  alerts:
+    enabled: true
+
 ###############################################################################
 # Pod
 ###############################################################################

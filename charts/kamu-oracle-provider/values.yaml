@@ -10,6 +10,13 @@ app:
     http_address: "0.0.0.0"
     http_port: 8080
 
+  # Application-level Prometheus alerts
+  alerts:
+    enabled: true
+    walletBalanceLow:
+      threshold: "0.1e18"
+      unit: WEI
+
 
 ###############################################################################
 # Pod
