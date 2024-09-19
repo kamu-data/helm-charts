@@ -11,10 +11,12 @@ spec:
     rules:
       - alert: OutboxFailedConsumers
         expr: >
-          kamu_api_server_outbox_failed_consumers_total {
-            namespace="{{ .Release.Namespace }}",
-            service="{{ include "kamu-api-server.fullname" . }}",
-          } > 0
+          sum by (namespace,service) (
+            kamu_api_server_outbox_failed_consumers_total {
+              namespace="{{ .Release.Namespace }}",
+              service="{{ include "kamu-api-server.fullname" . }}",
+            }
+          ) > 0
         annotations:
           message: >
             API server {{ .Release.Namespace }}/{{ include "kamu-api-server.fullname" . }}
