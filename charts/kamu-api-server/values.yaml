@@ -48,7 +48,8 @@ imageMigrations:
   pullPolicy: IfNotPresent
   tag: ""
   migrationsPath: ""
-  databaseSecretName: ""
+  databaseMasterSecretName: ""
+  databaseAppUserSecretName: ""
   databaseProvider: postgresql
   databaseHost: ""
   databasePort: 5432

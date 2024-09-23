@@ -48,8 +48,9 @@ spec:
             - "/bin/sh"
             - "-c"
             - |
-              source /scripts/fetch-db-secret.sh {{ .Values.imageMigrations.databaseSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseProvider }} {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} &&
-              /scripts/run-db-migrations.sh {{ .Values.imageMigrations.migrationsPath }}
+              source /scripts/fetch-db-secrets.sh {{ .Values.imageMigrations.databaseMasterSecretName }} {{ .Values.imageMigrations.databaseAppUserSecretName }} $AWS_REGION {{ .Values.imageMigrations.databaseProvider }} {{ .Values.imageMigrations.databaseHost }} {{ .Values.imageMigrations.databasePort }} {{ .Values.imageMigrations.databaseName }} &&
+              /scripts/run-db-migrations.sh {{ .Values.imageMigrations.migrationsPath }} &&
+              /scripts/create-db-app-user.sh
           env:
             - name: RUST_BACKTRACE
               value: "1"
