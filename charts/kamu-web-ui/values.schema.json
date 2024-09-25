@@ -55,6 +55,19 @@
                   "type": "boolean"
                 }
               }
+            },
+            "grafanaLogs": {
+              "type": "object",
+              "required": [
+                "taskDetailsUrl"
+              ],
+              "properties": {
+                "taskDetailsUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "minLength": 1
+                }
+              }
             }
           }
         }
