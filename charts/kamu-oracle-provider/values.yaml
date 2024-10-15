@@ -10,6 +10,10 @@ app:
     http_address: "0.0.0.0"
     http_port: 8080
 
+  # Application-level metrics collection
+  metrics:
+    enabled: true
+
   # Application-level Prometheus alerts
   alerts:
     enabled: true
