@@ -79,6 +79,10 @@
                   "type": "string",
                   "format": "uri"
                 },
+                "multiTenant": {
+                  "$comment": "Indicates that target repo is multi-tenant (for file:// only)",
+                  "type": "boolean"
+                },
                 "caching": {
                   "type": "object",
                   "additionalProperties": false,
