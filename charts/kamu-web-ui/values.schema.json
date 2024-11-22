@@ -42,7 +42,9 @@
               "type": "object",
               "required": [
                 "enableLogout",
-                "enableScheduling"
+                "enableScheduling",
+                "enableDatasetEnvVarsManagment",
+                "enableTermsOfService"
               ],
               "properties": {
                 "enableLogout": {
@@ -52,6 +54,9 @@
                   "type": "boolean"
                 },
                 "enableDatasetEnvVarsManagment": {
+                  "type": "boolean"
+                },
+                "enableTermsOfService": {
                   "type": "boolean"
                 }
               }
