@@ -6,6 +6,15 @@
 Official [Helm](https://helm.sh) charts for deploying [Kamu](https://kamu.dev) components in [Kubernetes](https://kubernetes.io).
 
 ## Using
+[Helm](https://helm.sh) must be installed to use the charts. Please refer to Helm's [documentation](https://helm.sh/docs) to get started.
+
+Once Helm has been set up correctly, add the repo as follows:
+
+  helm repo add kamu https://kamu-data.github.io/helm-charts
+
+If you had already added this repo earlier, run `helm repo update` to retrieve the latest versions of the packages. You can then run `helm search repo
+kamu` to see the charts.
+
 See [Kamu Node documentation](https://docs.kamu.dev/node/) for architecture overview and deployment instructions.
 
 See [kamu-deploy-example](https://github.com/kamu-data/kamu-deploy-example) repository for recommended Infrastructure-as-Code setup.
