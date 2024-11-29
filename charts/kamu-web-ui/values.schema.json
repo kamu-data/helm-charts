@@ -16,8 +16,7 @@
           "required": [
             "apiServerGqlUrl",
             "apiServerHttpUrl",
-            "githubClientId",
-            "featureFlags"
+            "githubClientId"
           ],
           "properties": {
             "apiServerGqlUrl": {
@@ -33,33 +32,6 @@
             "githubClientId": {
               "type": "string",
               "minLength": 1
-            },
-            "ingestUploadFileLimitMb": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "featureFlags": {
-              "type": "object",
-              "required": [
-                "enableLogout",
-                "enableScheduling",
-                "enableDatasetEnvVarsManagment",
-                "enableTermsOfService"
-              ],
-              "properties": {
-                "enableLogout": {
-                  "type": "boolean"
-                },
-                "enableScheduling": {
-                  "type": "boolean"
-                },
-                "enableDatasetEnvVarsManagment": {
-                  "type": "boolean"
-                },
-                "enableTermsOfService": {
-                  "type": "boolean"
-                }
-              }
             },
             "grafanaLogs": {
               "type": "object",

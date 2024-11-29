@@ -10,12 +10,6 @@ app:
     apiServerGqlUrl: ""
     apiServerHttpUrl: ""
     githubClientId: ""
-    ingestUploadFileLimitMb: 50
-    featureFlags:
-      enableLogout: true
-      enableScheduling: true
-      enableDatasetEnvVarsManagment: true
-      enableTermsOfService: true
 
 ###############################################################################
 # Pod
