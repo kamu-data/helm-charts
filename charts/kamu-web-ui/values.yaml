@@ -10,6 +10,8 @@ app:
     apiServerGqlUrl: ""
     apiServerHttpUrl: ""
     githubClientId: ""
+    features:
+      showMode: "production"
 
 ###############################################################################
 # Pod

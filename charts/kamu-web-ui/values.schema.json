@@ -45,6 +45,22 @@
                   "minLength": 1
                 }
               }
+            },
+            "features": {
+              "type": "object",
+              "required": [
+                "showMode"
+              ],
+              "properties": {
+                "showMode": {
+                  "type": "string",
+                  "enum": [
+                    "develop",
+                    "demo",
+                    "production"
+                  ]                  
+                }
+              }
             }
           }
         }
