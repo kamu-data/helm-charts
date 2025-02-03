@@ -369,6 +369,37 @@
                   "description": "Remote database port"
                 }
               }
+            },
+            "email": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [ "senderAddress", "gateway" ],
+              "properties": {
+                "senderName": {
+                  "type": "string"
+                },
+                "senderAddress": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "gateway": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": [ "kind" ],
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "dummy",
+                        "postmark"
+                      ]
+                    },
+                    "apiKey": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
             }
           }
         }
