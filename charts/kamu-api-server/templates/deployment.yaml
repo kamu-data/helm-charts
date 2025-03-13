@@ -147,8 +147,8 @@ spec:
             - name: flightsql
               containerPort: 50050
               protocol: TCP
-          {{- if .Values.startupProbe }}
-          readinessProbe: {{- .Values.startupProbe | toYaml | nindent 12 }}
+          {{- if .Values.startupProbe.enabled }}
+          startupProbe: {{- .Values.startupProbe | toYaml | nindent 12 }}
           {{- end }}
           {{- if .Values.readinessProbe }}
           readinessProbe: {{- .Values.readinessProbe | toYaml | nindent 12 }}

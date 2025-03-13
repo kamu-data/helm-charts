@@ -80,7 +80,12 @@ opentelemetry:
 extraEnv: []
 extraEnvFrom: []
 
-startupProbe: {}
+startupProbe:
+  httpGet:
+    path: /system/health
+    port: http
+  periodSeconds: 1
+  failureThreshold: 15
 readinessProbe:
   httpGet:
     path: /system/health?type=readiness
