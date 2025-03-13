@@ -404,6 +404,14 @@
                   }
                 }
               }
+            },
+            "flowSystem": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "search": {
+              "type": "object",
+              "additionalProperties": true
             }
           }
         }
