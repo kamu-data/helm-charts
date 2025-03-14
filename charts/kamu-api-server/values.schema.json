@@ -152,6 +152,39 @@
                 }
               }
             },
+            "flowSystem": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "flowAgent": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": [],
+                  "properties": {
+                    "awaitingStepSecs": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "mandatoryThrottlingPeriodSecs": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  }
+                },
+                "taskAgent": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": [],
+                  "properties": {
+                    "taskCheckingIntervalSecs": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            },
             "auth": {
               "type": "object",
               "additionalProperties": false,
@@ -377,7 +410,10 @@
             "email": {
               "type": "object",
               "additionalProperties": false,
-              "required": [ "senderAddress", "gateway" ],
+              "required": [
+                "senderAddress",
+                "gateway"
+              ],
               "properties": {
                 "senderName": {
                   "type": "string"
@@ -389,7 +425,9 @@
                 "gateway": {
                   "type": "object",
                   "additionalProperties": true,
-                  "required": [ "kind" ],
+                  "required": [
+                    "kind"
+                  ],
                   "properties": {
                     "kind": {
                       "type": "string",
@@ -404,10 +442,6 @@
                   }
                 }
               }
-            },
-            "flowSystem": {
-              "type": "object",
-              "additionalProperties": true
             },
             "search": {
               "type": "object",
