@@ -445,7 +445,7 @@
             },
             "search": {
               "type": "object",
-              "additionalProperties": true,
+              "additionalProperties": false,
               "properties": {
                 "indexer": {
                   "type": "object",
@@ -465,16 +465,99 @@
                     }
                   }
                 },
+                "embeddingsChunkerConfig": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "simple"
+                      ]
+                    },
+                    "splitSections": {
+                      "type": "boolean"
+                    },
+                    "splitParagraphs": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "embeddingsEncoder": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "apiKey"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "openAi"
+                      ]
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "apiKey": {
+                      "type": "string"
+                    },
+                    "modelName": {
+                      "type": "string"
+                    },
+                    "dimensions": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                },
+                "vectorRepo": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "url"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "qdrant"
+                      ]
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "apiKey": {
+                      "type": "string"
+                    },
+                    "collectionName": {
+                      "type": "string"
+                    },
+                    "dimensions": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                },
                 "overfetchFactor": {
                   "type": "number",
-                  "format": "float"
+                  "format": "float",
+                  "minimum": 0
                 },
                 "overfetchAmount": {
-                  "type": "integer"
+                  "type": "integer",
+                  "minimum": 0
                 },
                 "semanticSearchThresholdScore": {
                   "type": "number",
-                  "format": "float"
+                  "format": "float",
+                  "minimum": 0,
+                  "maximum": 1
                 }
               }
             }
