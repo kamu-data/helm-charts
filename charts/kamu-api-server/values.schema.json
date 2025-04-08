@@ -445,7 +445,38 @@
             },
             "search": {
               "type": "object",
-              "additionalProperties": true
+              "additionalProperties": true,
+              "properties": {
+                "indexer": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "clearOnStart": {
+                      "type": "boolean"
+                    },
+                    "skipDatasetsWithNoDescription": {
+                      "type": "boolean"
+                    },
+                    "skipDatasetsWithNoData": {
+                      "type": "boolean"
+                    },
+                    "payloadIncludeContent": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "overfetchFactor": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "overfetchAmount": {
+                  "type": "integer"
+                },
+                "semanticSearchThresholdScore": {
+                  "type": "number",
+                  "format": "float"
+                }
+              }
             }
           }
         }
