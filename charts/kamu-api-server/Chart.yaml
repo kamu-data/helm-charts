@@ -2,8 +2,8 @@ apiVersion: v2
 name: kamu-api-server
 description: API server component of the Kamu Compute Node
 type: application
-version: 0.62.3
-appVersion: "0.62.3"
+version: 0.63.0
+appVersion: "0.63.0"
 home: https://kamu.dev
 icon: https://www.kamu.dev/images/kamu_logo_icon_bg_square.png
 sources:
