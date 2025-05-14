@@ -198,6 +198,23 @@
                   "type": "string",
                   "minLength": 16
                 },
+                "didEncryption": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [],
+                  "properties": {
+                    "encryptionKey": {
+                      "type": "string",
+                      "minLength": 32,
+                      "maxLength": 32,
+                      "$comment": "Encryption key for did secret keys"
+                    },
+                    "enabled": {
+                      "type": "boolean",
+                      "$comment": "Argument to identify should storing did secret keys feature be enabled or not"
+                    }
+                  }
+                },
                 "providers": {
                   "type": "array",
                   "items": {
