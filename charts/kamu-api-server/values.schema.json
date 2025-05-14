@@ -303,8 +303,11 @@
                                   "type": "string",
                                   "format": "date-time"
                                 },
-                                "isAdmin": {
-                                  "type": "boolean"
+                                "properties": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
                                 },
                                 "treatDatasetsAsPublic": {
                                   "type": "boolean"
