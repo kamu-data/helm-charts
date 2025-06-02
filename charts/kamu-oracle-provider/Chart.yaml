@@ -2,8 +2,8 @@ apiVersion: v2
 name: kamu-oracle-provider
 description: Oracle provider that uses Kamu Node to supply data to blockchain smart contracts
 type: application
-version: 0.66.0
-appVersion: "0.66.0"
+version: 0.68.0
+appVersion: "0.68.0"
 home: https://kamu.dev
 icon: https://www.kamu.dev/images/kamu_logo_icon_bg_square.png
 sources:
