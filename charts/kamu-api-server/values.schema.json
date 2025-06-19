@@ -190,7 +190,8 @@
               "additionalProperties": false,
               "required": [
                 "jwtSecret",
-                "providers"
+                "providers",
+                "passwordPolicy"
               ],
               "properties": {
                 "jwtSecret": {
@@ -212,6 +213,19 @@
                     "enabled": {
                       "type": "boolean",
                       "$comment": "Argument to identify should storing did secret keys feature be enabled or not"
+                    }
+                  }
+                },
+                "passwordPolicy": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "minNewPasswordLength"
+                  ],
+                  "properties": {
+                    "minNewPasswordLength": {
+                      "type": "integer",
+                      "minimum": 8
                     }
                   }
                 },
@@ -274,7 +288,7 @@
                                 },
                                 "password": {
                                   "type": "string",
-                                  "minLength": 1
+                                  "minLength": 8
                                 },
                                 "email": {
                                   "type": "string",
