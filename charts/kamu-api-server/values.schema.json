@@ -201,7 +201,8 @@
                 },
                 "allowAnonymous": {
                   "$comment": "Disable anonymous access to API",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "default": true
                 },
                 "didEncryption": {
                   "type": "object",
