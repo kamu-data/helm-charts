@@ -199,6 +199,10 @@
                   "type": "string",
                   "minLength": 16
                 },
+                "allowAnonymous": {
+                  "$comment": "Disable anonymous access to API",
+                  "type": "boolean"
+                },
                 "didEncryption": {
                   "type": "object",
                   "additionalProperties": false,
