@@ -159,7 +159,7 @@
               "properties": {
                 "flowAgent": {
                   "type": "object",
-                  "additionalProperties": true,
+                  "additionalProperties": false,
                   "required": [],
                   "properties": {
                     "awaitingStepSecs": {
@@ -169,12 +169,43 @@
                     "mandatoryThrottlingPeriodSecs": {
                       "type": "integer",
                       "minimum": 1
+                    },
+                    "defaultRetryPolicies": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "maxAttempts",
+                          "minDelaySecs",
+                          "backoffType"
+                        ],
+                        "properties": {
+                          "maxAttempts": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "minDelaySecs": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "backoffType": {
+                            "type": "string",
+                            "enum": [
+                              "fixed",
+                              "linear",
+                              "exponential",
+                              "exponentialWithJitter"
+                            ]
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "taskAgent": {
                   "type": "object",
-                  "additionalProperties": true,
+                  "additionalProperties": false,
                   "required": [],
                   "properties": {
                     "taskCheckingIntervalSecs": {
