@@ -216,6 +216,17 @@
                 }
               }
             },
+            "webhooks": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "maxConsecutiveFailures": {
+                  "type": "integer",
+                    "minimum": 1
+                }
+              }
+            },            
             "auth": {
               "type": "object",
               "additionalProperties": false,
