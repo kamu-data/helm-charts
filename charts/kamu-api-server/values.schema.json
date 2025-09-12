@@ -641,6 +641,11 @@
                   "maximum": 1
                 }
               }
+            },
+            "extra": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {}
             }
           }
         }
