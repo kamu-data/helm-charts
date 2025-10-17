@@ -203,6 +203,25 @@
                     }
                   }
                 },
+                "flowSystemEventAgent": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [],
+                  "properties": {
+                    "minDebounceIntervalMs": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "maxListeningTimeoutMs": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "batchSize": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  }
+                },
                 "taskAgent": {
                   "type": "object",
                   "additionalProperties": false,
@@ -224,6 +243,10 @@
                 "maxConsecutiveFailures": {
                   "type": "integer",
                     "minimum": 1
+                },
+                "deliveryTimeoutSecs": {
+                  "type": "integer",
+                  "minimum": 1
                 }
               }
             },            
