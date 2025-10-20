@@ -242,14 +242,25 @@
               "properties": {
                 "maxConsecutiveFailures": {
                   "type": "integer",
-                    "minimum": 1
+                  "minimum": 1
                 },
                 "deliveryTimeoutSecs": {
                   "type": "integer",
                   "minimum": 1
+                },
+                "secretEncryptionEnabled": {
+                  "$comment": "Enable encryption for webhook secrets",
+                  "type": "boolean",
+                  "default": false
+                },
+                "secretEncryptionKey": {
+                  "type": "string",
+                  "minLength": 32,
+                  "maxLength": 32,
+                  "$comment": "Encryption key for webhook secrets"
                 }
               }
-            },            
+            },
             "auth": {
               "type": "object",
               "additionalProperties": false,
