@@ -96,6 +96,11 @@
                       "minLength": 1
                     }
                   }
+                },
+                "dataBlocksPageSize": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "$comment": "Number of data blocks to read in a single page when listing dataset data blocks"
                 }
               }
             },
