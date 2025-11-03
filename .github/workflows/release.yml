@@ -1,5 +1,7 @@
 name: Release charts
 on:
+  # Manual trigger
+  workflow_dispatch: { }
   push:
     branches:
       - master
