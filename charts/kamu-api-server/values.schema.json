@@ -524,6 +524,11 @@
                 "port": {
                   "type": "integer",
                   "description": "Remote database port"
+                },
+                "maxConnections": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Maximum number of database connections in the pool"
                 }
               }
             },
