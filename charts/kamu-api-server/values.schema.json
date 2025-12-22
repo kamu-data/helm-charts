@@ -686,6 +686,26 @@
                 }
               }
             },
+            "quota": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "account"
+              ],
+              "properties": {
+                "account": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "storage": {
+                      "type": "integer",
+                      "description": "Default storage size in bytes",
+                      "minimum": 5000000
+                    }
+                  }
+                }
+              }
+            },
             "extra": {
               "type": "object",
               "additionalProperties": true,
