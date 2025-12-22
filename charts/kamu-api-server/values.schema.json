@@ -696,10 +696,13 @@
                 "account": {
                   "type": "object",
                   "additionalProperties": false,
+                  "required": [
+                    "defaultStorageLimitInBytes"
+                  ],
                   "properties": {
-                    "storage": {
+                    "defaultStorageLimitInBytes": {
                       "type": "integer",
-                      "description": "Default storage size in bytes",
+                      "description": "Default storage limit for an account in bytes",
                       "minimum": 5000000
                     }
                   }
