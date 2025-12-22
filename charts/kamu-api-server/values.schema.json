@@ -699,7 +699,8 @@
                   "properties": {
                     "storage": {
                       "type": "integer",
-                      "minimum": 0
+                      "description": "Default storage size in bytes",
+                      "minimum": 5000000
                     }
                   }
                 }
