@@ -686,6 +686,25 @@
                 }
               }
             },
+            "quota": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "account"
+              ],
+              "properties": {
+                "account": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "storage": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            },
             "extra": {
               "type": "object",
               "additionalProperties": true,
