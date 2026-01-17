@@ -576,6 +576,9 @@
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
+                    "incrementalIndexing": {
+                      "type": "boolean"
+                    },
                     "clearOnStart": {
                       "type": "boolean"
                     },
@@ -637,6 +640,41 @@
                     "dimensions": {
                       "type": "integer",
                       "minimum": 0
+                    }
+                  }
+                },
+                "repo": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "url"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "elasticsearch"
+                      ]
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "caCertPemPath": {
+                      "type": "string"
+                    },
+                    "indexPrefix": {
+                      "type": "string"
+                    },
+                    "timeoutSecs": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "enableCompression": {
+                      "type": "boolean"
                     }
                   }
                 },
