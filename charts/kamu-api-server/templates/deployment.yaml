@@ -140,6 +140,9 @@ spec:
             - name: configs
               subPath: config.yaml
               mountPath: /opt/kamu/config.yaml
+            {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 8080
@@ -162,6 +165,9 @@ spec:
         - name: configs
           configMap:
             name: {{ include "kamu-api-server.fullname" . }}-{{ template "kamu-api-server.config.sha" . }}
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}            
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

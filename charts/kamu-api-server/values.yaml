@@ -80,6 +80,9 @@ opentelemetry:
 extraEnv: []
 extraEnvFrom: []
 
+extraVolumes: []
+extraVolumeMounts: []
+
 startupProbe:
   httpGet:
     path: /system/health
