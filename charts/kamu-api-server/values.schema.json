@@ -581,15 +581,6 @@
                     },
                     "clearOnStart": {
                       "type": "boolean"
-                    },
-                    "skipDatasetsWithNoDescription": {
-                      "type": "boolean"
-                    },
-                    "skipDatasetsWithNoData": {
-                      "type": "boolean"
-                    },
-                    "payloadIncludeContent": {
-                      "type": "boolean"
                     }
                   }
                 },
@@ -675,46 +666,12 @@
                     },
                     "enableCompression": {
                       "type": "boolean"
-                    }
-                  }
-                },
-                "vectorRepo": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "kind",
-                    "url"
-                  ],
-                  "properties": {
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "qdrant"
-                      ]
                     },
-                    "url": {
-                      "type": "string"
-                    },
-                    "apiKey": {
-                      "type": "string"
-                    },
-                    "collectionName": {
-                      "type": "string"
-                    },
-                    "dimensions": {
+                    "embeddingDimensions": {
                       "type": "integer",
                       "minimum": 0
                     }
                   }
-                },
-                "overfetchFactor": {
-                  "type": "number",
-                  "format": "float",
-                  "minimum": 0
-                },
-                "overfetchAmount": {
-                  "type": "integer",
-                  "minimum": 0
                 },
                 "semanticSearchThresholdScore": {
                   "type": "number",
