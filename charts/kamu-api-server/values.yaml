@@ -3,7 +3,7 @@
 ###############################################################################
 
 app:
-  logLevel: "debug,reqwest=info,hyper=info,h2=info,rustls=info,aws_smithy_runtime=info,aws_smithy_runtime_api=info"
+  logLevel: "debug,reqwest=info,hyper=info,h2=info,rustls=info,aws_smithy_runtime=info,aws_smithy_runtime_api=info,datafusion=info,oso=info"
 
   # TODO: generate schema for config from DTOs
   config:
