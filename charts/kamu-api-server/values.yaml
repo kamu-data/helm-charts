@@ -8,8 +8,8 @@ app:
   # TODO: generate schema for config from DTOs
   config:
     engine:
-      runtime: podman
-      networkNs: host
+      runtime: Podman
+      networkNs: Host
 
   awsCredentials:
     enabled: false
