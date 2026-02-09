@@ -21,6 +21,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # to pull repo with all history
+      
+      # Lint values schemas
+      - uses: actions-rs/toolchain@v1
+      - uses: cargo-bins/cargo-binstall@main
+      - run: cargo binstall rust-script -y --github-token ${{ secrets.GITHUB_TOKEN }}
+      - run: rust-script tools/update_values_schemas.rs
+      - run: git diff && git diff-index --quiet HEAD
 
       - name: Configure Git
         run: |
