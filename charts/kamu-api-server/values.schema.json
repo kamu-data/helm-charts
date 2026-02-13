@@ -966,6 +966,30 @@
       },
       "type": "object"
     },
+    "QuotaAccountConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "defaultStorageLimitInBytes": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "QuotaConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "account": {
+          "$ref": "#/$defs/QuotaAccountConfig",
+          "default": {}
+        }
+      },
+      "type": "object"
+    },
     "RepoCachingConfig": {
       "additionalProperties": false,
       "properties": {
@@ -1479,7 +1503,7 @@
                   "taskCheckingIntervalSecs": 1
                 }
               },
-              "description": "Configuration for flow system"
+              "description": "Configuration for the flow system"
             },
             "identity": {
               "anyOf": [
@@ -1517,6 +1541,13 @@
               },
               "description": "Protocols"
             },
+            "quota": {
+              "$ref": "#/$defs/QuotaConfig",
+              "default": {
+                "account": {}
+              },
+              "description": "Default quotas configured by type"
+            },
             "repo": {
               "$ref": "#/$defs/RepoConfig",
               "default": {
@@ -1553,7 +1584,7 @@
                 },
                 "semanticSearchThresholdScore": 0.0
               },
-              "description": "Seach configuration"
+              "description": "Search configuration"
             },
             "source": {
               "$ref": "#/$defs/SourceConfig",
@@ -1569,7 +1600,7 @@
                 },
                 "targetRecordsPerSlice": 10000
               },
-              "description": "Ingestions sources"
+              "description": "Ingestion's sources"
             },
             "uploadRepo": {
               "$ref": "#/$defs/UploadRepoConfig",
