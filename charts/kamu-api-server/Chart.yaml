@@ -2,8 +2,8 @@ apiVersion: v2
 name: kamu-api-server
 description: API server component of the Kamu Compute Node
 type: application
-version: 0.86.4
-appVersion: "0.86.3"  # NOTE: Don't forget to update `imageMigrations.tag` in values
+version: 0.86.5
+appVersion: "0.86.4"  # NOTE: Don't forget to update `imageMigrations.tag` in values
 home: https://kamu.dev
 icon: https://www.kamu.dev/images/kamu_logo_icon_bg_square.png
 sources:

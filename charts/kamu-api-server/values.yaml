@@ -50,7 +50,7 @@ image:
 imageMigrations:
   # TODO: kamu-node should build its own migration image that has the same version tag as the app
   repository: ghcr.io/kamu-data/sqlx-cli-with-migrations
-  tag: "0.263.2.0"  # NOTE: Keep in sync with kamu core version
+  tag: "0.263.3.0"  # NOTE: Keep in sync with kamu core version
   pullPolicy: IfNotPresent
   migrationsPath: "./migrations/postgres"
   databaseMasterSecretName: ""
