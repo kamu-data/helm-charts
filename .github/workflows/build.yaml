@@ -1,0 +1,31 @@
+name: build
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+  # manual trigger
+  workflow_dispatch: { }
+
+jobs:
+  lint_schemas:
+    name: Lint / Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # to pull repo with all history
+
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: rust-script
+
+      - run: rust-script tools/update_values_schemas.rs
+
+      - run: git diff && git diff-index --quiet HEAD
