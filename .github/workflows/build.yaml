@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # to pull repo with all history
 
       - uses: actions-rust-lang/setup-rust-toolchain@v1
 
