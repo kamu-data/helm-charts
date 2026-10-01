@@ -26,6 +26,16 @@ app:
   # Application-level Prometheus alerts
   alerts:
     enabled: true
+    taskStuck:
+      # Should be above p99 duration of the longest normal task (e.g. large ingest)
+      thresholdSeconds: 7200
+    backgroundAgentHung:
+      # ~5x of `app.config.backgroundAgents.maxListeningTimeout`
+      thresholdSeconds: 600
+    flowSchedulerLag:
+      thresholdSeconds: 60
+    taskQueueWait:
+      thresholdSeconds: 900
 
 ###############################################################################
 # Pod
@@ -50,7 +60,7 @@ image:
 imageMigrations:
   # TODO: kamu-node should build its own migration image that has the same version tag as the app
   repository: ghcr.io/kamu-data/sqlx-cli-with-migrations
-  tag: "0.267.0.0"  # NOTE: Keep in sync with kamu core version
+  tag: "0.268.1.0"  # NOTE: Keep in sync with kamu core version
   pullPolicy: IfNotPresent
   migrationsPath: "./migrations/postgres"
   databaseMasterSecretName: ""

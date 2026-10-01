@@ -1,27 +1,146 @@
 {{- if .Values.app.alerts.enabled -}}
+{{- $fullname := include "kamu-api-server.fullname" . -}}
+{{- $sel := printf "namespace=%q, service=%q" .Release.Namespace $fullname -}}
+{{- $alerts := .Values.app.alerts -}}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ include "kamu-api-server.fullname" . }}
+  name: {{ $fullname }}
   labels:
     {{- include "kamu-api-server.labels" . | nindent 4 }}
 spec:
   groups:
-  - name: {{ include "kamu-api-server.fullname" . }}
+  - name: {{ $fullname }}
     rules:
       - alert: OutboxFailedConsumers
         expr: >
           sum by (namespace,service) (
             kamu_api_server_outbox_failed_consumers_total {
               namespace="{{ .Release.Namespace }}",
-              service="{{ include "kamu-api-server.fullname" . }}",
+              service="{{ $fullname }}",
             }
           ) > 0
         annotations:
           message: >
-            API server {{ .Release.Namespace }}/{{ include "kamu-api-server.fullname" . }}
+            API server {{ .Release.Namespace }}/{{ $fullname }}
             have stopped processing some outbox messages and requires manual intervention.
           summary: Outbox Consumption Failed
         labels:
           severity: critical
+
+      - alert: TaskStuck
+        expr: >
+          kamu_api_server_task_agent_running_task_started_timestamp_seconds { {{ $sel }} } > 0
+          and
+          time() - kamu_api_server_task_agent_running_task_started_timestamp_seconds { {{ $sel }} }
+            > {{ $alerts.taskStuck.thresholdSeconds }}
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ "{{" }} $labels.pod {{ "}}" }}
+            has been running a task on executor {{ "{{" }} $labels.executor {{ "}}" }}
+            for over {{ $alerts.taskStuck.thresholdSeconds }}s, blocking all other tasks.
+          summary: Task Stuck
+        labels:
+          severity: critical
+
+      # Task agent does not record heartbeats while running a task - `TaskStuck` covers it
+      - alert: BackgroundAgentHung
+        expr: >
+          (
+            time() - kamu_api_server_wakeup_listener_last_heartbeat_timestamp_seconds {
+              {{ $sel }}, agent!="dev.kamu.domain.task-system.TaskAgent"
+            } > {{ $alerts.backgroundAgentHung.thresholdSeconds }}
+          )
+          or
+          (
+            time() - kamu_api_server_wakeup_listener_last_heartbeat_timestamp_seconds {
+              {{ $sel }}, agent="dev.kamu.domain.task-system.TaskAgent"
+            } > {{ $alerts.backgroundAgentHung.thresholdSeconds }}
+            unless on (namespace, pod)
+            kamu_api_server_task_agent_running_task_started_timestamp_seconds { {{ $sel }} } > 0
+          )
+        for: 2m
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ "{{" }} $labels.pod {{ "}}" }}
+            background agent {{ "{{" }} $labels.agent {{ "}}" }} has not reported a heartbeat
+            for over {{ $alerts.backgroundAgentHung.thresholdSeconds }}s - its loop is likely blocked.
+          summary: Background Agent Hung
+        labels:
+          severity: critical
+
+      - alert: FlowSystemProjectorFailing
+        expr: >
+          max by (namespace,service,projector) (
+            kamu_api_server_flow_system_event_projector_failing { {{ $sel }} }
+          ) > 0
+        for: 5m
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ $fullname }}
+            fails to apply flow system events in projector {{ "{{" }} $labels.projector {{ "}}" }},
+            flow process states are going stale.
+          summary: Flow System Projector Failing
+        labels:
+          severity: critical
+
+      {{- if .Values.app.metrics.enabled }}
+
+      - alert: MetricsMissing
+        expr: >
+          absent(kamu_api_server_wakeup_listener_last_heartbeat_timestamp_seconds { {{ $sel }} })
+        for: 10m
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ $fullname }}
+            background agent metrics are missing - other alerts are silently disabled.
+          summary: Metrics Missing
+        labels:
+          severity: warning
+      {{- end }}
+
+      - alert: FlowActivationsFailing
+        expr: >
+          sum by (namespace,service,flow_type) (
+            increase(kamu_api_server_flow_agent_activations_total { {{ $sel }}, outcome="failed" }[15m])
+          ) > 0
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ $fullname }}
+            fails to activate flows of type {{ "{{" }} $labels.flow_type {{ "}}" }}.
+          summary: Flow Activations Failing
+        labels:
+          severity: warning
+
+      - alert: FlowSchedulerLagging
+        expr: >
+          histogram_quantile(0.95,
+            sum by (namespace,service,le) (
+              rate(kamu_api_server_flow_agent_activation_delay_seconds_bucket { {{ $sel }} }[10m])
+            )
+          ) > {{ $alerts.flowSchedulerLag.thresholdSeconds }}
+        for: 15m
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ $fullname }}
+            activates flows more than {{ $alerts.flowSchedulerLag.thresholdSeconds }}s late (p95).
+          summary: Flow Scheduler Lagging
+        labels:
+          severity: warning
+
+      - alert: TaskQueueSaturated
+        expr: >
+          histogram_quantile(0.95,
+            sum by (namespace,service,le) (
+              rate(kamu_api_server_task_agent_task_queue_wait_seconds_bucket { {{ $sel }} }[30m])
+            )
+          ) > {{ $alerts.taskQueueWait.thresholdSeconds }}
+        for: 30m
+        annotations:
+          message: >
+            API server {{ .Release.Namespace }}/{{ $fullname }}
+            tasks wait in queue for more than {{ $alerts.taskQueueWait.thresholdSeconds }}s (p95).
+          summary: Task Queue Saturated
+        labels:
+          severity: warning
 {{- end }}
