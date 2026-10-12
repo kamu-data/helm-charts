@@ -95,7 +95,7 @@
               "type": "string"
             },
             "scanFromBlock": {
-              "description": "Block number to start scanning from on startup (precedence:\nscan_from_block, scan_last_blocks, scan_last_blocks_period)",
+              "description": "Block number to start scanning from on startup (precedence:\n`scan_from_block`, `scan_last_blocks`, `scan_last_blocks_period`)",
               "format": "uint64",
               "minimum": 0,
               "type": [
@@ -104,7 +104,7 @@
               ]
             },
             "scanLastBlocks": {
-              "description": "Number of last blocks to scan on startup (precedence: scan_from_block,\nscan_last_blocks, scan_last_blocks_period)",
+              "description": "Number of last blocks to scan on startup (precedence: `scan_from_block`,\n`scan_last_blocks`, `scan_last_blocks_period`)",
               "format": "uint64",
               "minimum": 0,
               "type": [
@@ -121,7 +121,7 @@
                   "type": "null"
                 }
               ],
-              "description": "Time period in which blocks will be scanned on startup (precedence:\nscan_from_block, scan_last_blocks, scan_last_blocks_period)"
+              "description": "Time period in which blocks will be scanned on startup (precedence:\n`scan_from_block`, `scan_last_blocks`, `scan_last_blocks_period`)"
             },
             "transactionConfirmations": {
               "description": "Number of confirmations to await before considering transaction included",

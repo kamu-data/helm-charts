@@ -10,6 +10,9 @@ app:
     apiServerGqlUrl: ""
     apiServerHttpUrl: ""
     githubClientId: ""
+    # Optional: contact address shown in storage quota warnings and on the "account not found" page.
+    # If omitted, these messages refer to the administrator or omit the contact link.
+    # supportEmail: support@example.com
     features:
       showMode: "production"
 

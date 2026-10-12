@@ -721,7 +721,7 @@
         },
         "risingwave": {
           "default": "ghcr.io/kamu-data/engine-risingwave:0.3.0",
-          "description": "UNSTABLE: RisingWave engine image",
+          "description": "UNSTABLE: `RisingWave` engine image",
           "type": "string"
         },
         "spark": {
@@ -810,22 +810,22 @@
         "anonSessionExpirationTimeout": {
           "$ref": "#/$defs/DurationString",
           "default": "5m",
-          "description": "Time after which FlightSQL client session will be forgotten and client\nwill have to re-authroize (for anonymous clients)"
+          "description": "Time after which `FlightSQL` client session will be forgotten and client\nwill have to re-authroize (for anonymous clients)"
         },
         "anonSessionInactivityTimeout": {
           "$ref": "#/$defs/DurationString",
           "default": "5s",
-          "description": "Time after which FlightSQL session context will be released to free the\nresources (for anonymous clients)"
+          "description": "Time after which `FlightSQL` session context will be released to free\nthe resources (for anonymous clients)"
         },
         "authedSessionExpirationTimeout": {
           "$ref": "#/$defs/DurationString",
           "default": "30m",
-          "description": "Time after which FlightSQL client session will be forgotten and client\nwill have to re-authroize (for authenticated clients)"
+          "description": "Time after which `FlightSQL` client session will be forgotten and client\nwill have to re-authroize (for authenticated clients)"
         },
         "authedSessionInactivityTimeout": {
           "$ref": "#/$defs/DurationString",
           "default": "5s",
-          "description": "Time after which FlightSQL session context will be released to free the\nresources (for authenticated clients)"
+          "description": "Time after which `FlightSQL` session context will be released to free\nthe resources (for authenticated clients)"
         }
       },
       "type": "object"
@@ -903,7 +903,7 @@
         },
         "preResolveDnslink": {
           "default": true,
-          "description": "Whether kamu should pre-resolve IPNS DNSLink names using DNS or leave it\nto the Gateway.",
+          "description": "Whether kamu should pre-resolve IPNS `DNSLink` names using DNS or leave\nit to the Gateway.",
           "type": "boolean"
         }
       },
@@ -960,7 +960,7 @@
             "authedSessionExpirationTimeout": "30m",
             "authedSessionInactivityTimeout": "5s"
           },
-          "description": "FlightSQL configuration"
+          "description": "`FlightSQL` configuration"
         },
         "ipfs": {
           "$ref": "#/$defs/IpfsConfig",
@@ -1383,7 +1383,7 @@
           "type": "boolean"
         },
         "secretEncryptionKey": {
-          "description": "Represents the encryption key for the webhooks secret. This field is\nrequired if `secret_encryption_enabled` is `true` or `None`.\n\nThe encryption key must be a 32-character alphanumeric string, which\nincludes both uppercase and lowercase Latin letters (A-Z, a-z) and\ndigits (0-9).\n\n# Example\nlet config = WebhooksConfig {\n    ...\n    secret_encryption_enabled: Some(true),\n    encryption_key:\nSome(String::from(\"aBcDeFgHiJkLmNoPqRsTuVwXyZ012345\")) }; ```",
+          "description": "Represents the encryption key for the webhooks secret. This field is\nrequired if `secret_encryption_enabled` is `true` or `None`.\n\nThe encryption key must be a 32-character alphanumeric string, which\nincludes both uppercase and lowercase Latin letters (A-Z, a-z) and\ndigits (0-9).\n\n# Example\n```ignore\nlet config = WebhooksConfig {\n    secret_encryption_enabled: true,\n    secret_encryption_key: Some(String::from(\"aBcDeFgHiJkLmNoPqRsTuVwXyZ012345\")),\n    ..\n};\n```",
           "type": [
             "string",
             "null"

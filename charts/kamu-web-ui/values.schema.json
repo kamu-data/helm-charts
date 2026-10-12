@@ -33,6 +33,10 @@
               "type": "string",
               "minLength": 1
             },
+            "supportEmail": {
+              "type": "string",
+              "format": "email"
+            },
             "grafanaLogs": {
               "type": "object",
               "required": [
